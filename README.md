@@ -1,9 +1,6 @@
 # laser-wolf.github.io
 
-A GitHub Pages website.
+A GitHub pages website using slightly modified version of the [Sidey](https://github.com/ronv/sidey) theme.
 
-A slightly modified version of the [sidey](https://github.com/ronv/sidey) theme.
 
-sidey license:
-MIT license 
-Copyright (c) 2020 Ronalds Vilciņš
+Sidey is licensed under a MIT license. Copyright (c) 2020 Ronalds Vilciņš.
