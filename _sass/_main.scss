@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "IBM VGA 8x16";
-  src: url("https://laser-wolf.github.io/Px437_IBM_VGA_8x16.ttf");
-}
-
 *,:after,:before {
 	box-sizing:border-box;
 	background-color:inherit;
@@ -55,10 +50,6 @@ pre {
   content: attr(data-lang);
   display: block;
   text-align: right;
-}
-
-code {
-	font-family: "IBM VGA 8x16";
 }
 
 pre code {
