@@ -5,21 +5,7 @@ title: About me
 
 Heya, my name is Casper Eide Özdemir-Børretzen and on this site I post some posts from time to time.
 
-
-You can find me on the following platforms:
-
-[LinkedIn](https://www.linkedin.com/in/casperborretzen){:target="_blank"}
-
-[GitHub](https://github.com/LASER-WOLF){:target="_blank"}
-
-[X](https://x.com/LASER_WOLF){:target="_blank"}
-
-[YouTube](http://www.youtube.com/@CasperBorretzen){:target="_blank"}
-
-[Letterboxd](letterboxd.com/LASER_WOLF){:target="_blank"}
-
+In addition to this website you can also find me on the following platforms:
+[LinkedIn](https://www.linkedin.com/in/casperborretzen){:target="_blank"}, [GitHub](https://github.com/LASER-WOLF){:target="_blank"}, [X](https://x.com/LASER_WOLF){:target="_blank"}, [YouTube](http://www.youtube.com/@CasperBorretzen){:target="_blank"}, [Letterboxd](letterboxd.com/LASER_WOLF){:target="_blank"}
 
 If you want to get in touch you can send me an email at [casper.eide@gmail.com](mailto:casper.eide@gmail.com).
-
-
-The source code for this website can be found at [https://github.com/LASER-WOLF/laser-wolf.github.io](https://github.com/LASER-WOLF/laser-wolf.github.io).
