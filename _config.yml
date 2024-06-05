@@ -1,17 +1,6 @@
 #site: 
 url: https://laser-wolf.github.io
-title: test
-#description: #
-twitter:
-  username: LASER_WOLF
-  card: summary
-  creator: LASER_WOLF
-author:
-  twitter: #yourusername
-  name: #yourusername
-  avatar:
-  email: #youremail
-  url: #yoururl
+title: Casper Eide Özdemir-Børretzen
 permalink: pretty
 
 baseurl: ""

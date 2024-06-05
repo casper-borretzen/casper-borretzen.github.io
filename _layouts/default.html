@@ -7,7 +7,9 @@ layout: compress
   {% include head.html %}  
   <body>
     <main>
-	    
+	    {% if page.title %}
+      { page.title }
+      {% endif %}
 	    {% include navigation.html %}
 	    
         {{ content }}
