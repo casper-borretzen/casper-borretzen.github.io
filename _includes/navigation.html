@@ -5,26 +5,6 @@
    {% for item in site.data.navigation.links %}
       <li><a href="{{ item.url }}" {% if item.url == page.url %} class="active"{% endif %}>{{ item.title }}</a></li>
    {% endfor %}
-
-   {% if site.youtube_username %}
-      <li><a target="_blank" rel="external" href="http://www.youtube.com/@{{ site.youtube_username }}">YouTube</a></li>
-   {% endif %}
-
-   {% if site.twitter_username %}
-      <li><a target="_blank" rel="external" href="https://x.com/{{ site.twitter_username }}">Twitter</a></li>
-   {% endif %}
-
-   {% if site.github_username %}
-      <li><a target="_blank" rel="external" href="https://github.com/{{ site.github_username }}">Github</a></li>
-   {% endif %}
-
-   {% if site.linkedin_username %}
-      <li><a target="_blank" rel="external" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">LinkedIn</a></li>
-   {% endif %}
-
-   {% if site.email %}
-      <li><a href="mailto:{{ site.email }}">Contact</a></li>
-   {% endif %}
 </ul>
 </nav>
 </header>
