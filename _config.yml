@@ -3,7 +3,7 @@ url: https://laser-wolf.github.io
 
 permalink: pretty
 baseurl: ""
-highlighter: none
+
 
 exclude:
   - .jekyll-cache
