@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "IBM VGA 8x16";
+  src: url(/Px437_IBM_VGA_8x16.ttf);
+}
+
 *,:after,:before {
 	box-sizing:border-box;
 	background-color:inherit;
@@ -46,12 +51,14 @@ pre {
 	margin: 2rem 0;
 }
 
-code,pre {
-	background: rgb(236, 237, 238);
+[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  text-align: right;
 }
 
 code {
-	padding: .1rem;
+	font-family: "IBM VGA 8x16";
 }
 
 pre code {
@@ -61,6 +68,10 @@ pre code {
 pre {
 	padding: 1rem;
 	overflow-x: auto;
+}
+
+.highlight pre{
+	padding:0.25rem 0.5rem;
 }
 
 img {
