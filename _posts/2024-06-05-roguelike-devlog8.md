@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #8: Generating a planet"
+title: "C# Roguelike, Devlog #8: Mesh generation and cube to sphere projection"
 ---
 
 Coming soon..
