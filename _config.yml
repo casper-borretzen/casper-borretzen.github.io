@@ -9,8 +9,7 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     default_lang: csharp
-    block:
-      line_numbers: true
+
 
 exclude:
   - .jekyll-cache
