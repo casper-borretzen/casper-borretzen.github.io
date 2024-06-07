@@ -4,6 +4,7 @@ title: "C# Roguelike, devlog #4: Adding corridors to the dungeon"
 ---
 
 Coming soon..
+
 <!--
     
     // Node data
@@ -23,11 +24,6 @@ Coming soon..
     }
 
 
-
-
--->
-
-<!--
 > BspTree.cs
 
 ```csharp
