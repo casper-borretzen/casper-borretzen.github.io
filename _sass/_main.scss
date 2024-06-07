@@ -21,7 +21,7 @@ body {
 }
 
 nav ul {
-    border-right: 1px solid #edf2f7;
+    border-right: 1px solid #e8e8e8;
 }
 
 a {
@@ -68,16 +68,12 @@ pre {
 	overflow-x: auto;
 }
 
-.highlight pre{
-	padding:0.5rem 1rem;
-}
-
 img {
 	max-width:100%;
 }
 
 hr {
-	background: #000;
+	background: #ddd;
     height: 1px;
     border: 0;
 }
@@ -216,4 +212,34 @@ figcaption {
     {
         display: none !important;
     }
+}
+
+.bash_ps1 {
+	user-select: none;
+}
+
+#toc.section-nav {
+  margin: 5px 0;
+  padding: 10px 30px;
+  border: 1px solid #e8e8e8;
+  border-radius: 3px;
+}
+
+.post h3 {
+	margin-top: 3rem;
+}
+
+.folder-tree {
+	font-family: "IBM VGA 8x16";
+	line-height: 1;
+}
+
+.folder-tree, .highlight pre{
+	padding:0.5rem 1rem;
+}
+
+.block-title {
+	font-size: smaller;
+	margin-top: 2rem;
+	font-weight: bold;
 }

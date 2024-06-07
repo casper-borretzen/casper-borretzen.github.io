@@ -3,29 +3,34 @@ layout: post
 title: "C# Roguelike, devlog #2: Binary space partitioning (BSP) trees"
 ---
 
+### Introduction
+---
+
 I thought I'd start the project with creating a simple fixed size map and rendering it in the console.
 
 The map generation technique I thought I'd try implementing involves using binary space partitioning to place rooms in a given space.
 
-The technique is explained in the video [Herbert Wolverson - Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298) (starting at 5:00).
+The technique is explained in the video presentation [Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298) by [Herbert Wolverson](https://x.com/herberticus).
 
 And in the roguebasin article [Basic BSP Dungeon generation](https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation).
 
 How a binary tree should function is quite well explained by Richard Fleming Jr in the videos [Binary Trees](https://youtu.be/S5y3ES4Rvkk) and [Tree Logic](https://youtu.be/Tb01dxMrIdc).
 
-<br>
+### Theory
+---
 
-Let's start off by creating a new directory and setting up a new dotnet project by running the command `dotnet new console --use-program-main`
+text coming soon..
 
-<br>
+### Implementation
+---
 
-Folder structure:
+{% include bash_command.html bash_command="mkdir Roguelike && cd Roguelike" %}
 
-![folder-structure](/img/screenshot_2024-06-07-021714.png)
+{% include bash_command.html bash_command="dotnet new console --use-program-main" bash_dir="~/Roguelike" %}
 
-<br>
+{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Map.cs|Program.cs|Rand.cs|Room.cs" %}
 
-Let's add a new file **Rand.cs**:
+<div class="block-title">Rand.cs:</div>
 
 ```csharp
 namespace Roguelike;
@@ -43,9 +48,8 @@ static class Rand
     }
 }
 ```
-<br>
 
-Alright, let's modify **Program.cs** and then work our way down from there:
+<div class="block-title">Program.cs:</div>
 
 ```csharp
 namespace Roguelike;
@@ -59,9 +63,7 @@ class Program
 }
 ```
 
-<br>
-
-Create a new file called **Map.cs** and add the following code:
+<div class="block-title">Map.cs:</div>
 
 ```csharp
 namespace Roguelike;
@@ -148,9 +150,7 @@ public class Map
 }
 ```
 
-<br>
-
-Next up let's add another file called **BspTree.cs** with the following code:
+<div class="block-title">BspTree.cs:</div>
 
 ```csharp
 namespace Roguelike;
@@ -262,9 +262,7 @@ public class BspTree
 }
 ```
 
-<br>
-
-Alright, now let's add the class for BSP nodes. Create a new file called **BspNode.cs** with the following code:
+<div class="block-title">BspNode.cs:</div>
 
 ```csharp
 namespace Roguelike;
@@ -438,9 +436,7 @@ public class BspNode
 }
 ```
 
-<br>
-
-Now let's move on to creating **Room.cs**:
+<div class="block-title">Room.cs:</div>
 
 ```csharp
 namespace Roguelike;
@@ -507,12 +503,13 @@ public class Room
 }
 ```
 
-<br>
+### Conclusion
+---
 
 And that's it for the first part of the BSP dungeon generator. In a later devlog we'll add corridors between the rooms.
 
-Running the command `dotnet run` should for now hopefully yield a result similar to this:
+{% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
 [![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png)
 
-Here's a link to the project source files: [roguelike-devlog2.zip](/files/roguelike-devlog2.zip)
+Download source code: [roguelike-devlog2.zip](/files/roguelike-devlog2.zip)

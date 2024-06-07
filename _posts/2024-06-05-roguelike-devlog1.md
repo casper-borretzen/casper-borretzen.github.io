@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "C# Roguelike, devlog #1: About the genre"
+toc: false
 ---
 
 - \[Video\] [Josh Ge, How to Make a Roguelike](https://youtu.be/jviNpRGuCIU){:target="_blank"}

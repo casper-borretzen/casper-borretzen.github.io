@@ -1,5 +1,6 @@
 title: Casper Eide Özdemir-Børretzen
 url: https://laser-wolf.github.io
+bash_user: laser_wolf@arch
 
 permalink: pretty
 baseurl: ""
@@ -11,6 +12,9 @@ kramdown:
 #    default_lang: csharp
 #    block:
 #      line_numbers: true
+
+toc:
+  ordered_list: true
 
 exclude:
   - .jekyll-cache
@@ -28,6 +32,8 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap  
   - jekyll-analytics
+  - jekyll-feed
+  - jekyll-toc
 
 jekyll_analytics:
   GoogleAnalytics:          # Add, if you want to track with Google Analytics
@@ -60,3 +66,4 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      toc: true

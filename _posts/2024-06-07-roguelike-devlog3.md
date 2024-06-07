@@ -3,34 +3,20 @@ layout: post
 title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search (BFS) and A*)"
 ---
 
-Coming soon..
-
-<!--
-- [Amit Patel, Amit’s A* Pages](http://theory.stanford.edu/~amitp/GameProgramming/)
-- [Amit Patel, Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
-- [Amit Patel, Implementation of A*](https://www.redblobgames.com/pathfinding/a-star/implementation.html)
-- [Amit Patel, Breadth First Search: multiple start points](https://www.redblobgames.com/pathfinding/distance-to-any/)
+- [Sebastian Lague, A* Pathfinding (algorithm explanation)](https://youtu.be/-L-WgKMFuhE){:target="_blank"}
+- [Amit Patel, Amit’s A* Pages](http://theory.stanford.edu/~amitp/GameProgramming/){:target="_blank"}
+- [Amit Patel, Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html){:target="_blank"}
+- [Amit Patel, Implementation of A*](https://www.redblobgames.com/pathfinding/a-star/implementation.html){:target="_blank"}
+- [Amit Patel, Breadth First Search: multiple start points](https://www.redblobgames.com/pathfinding/distance-to-any/){:target="_blank"}
 
 
-> BspTree.cs
+**BspTree.cs**
 
 ```csharp
     // Constructor
     public BspTree(Map map, int width, int height, int x = 0, int y = 0)
     {
-        this.id = count;
-        count++;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.map = map;
-        
-        // Generate all nodes and rooms
-        this.root = new BspNode(this, width, height);
-
-        // Generate corridors
-        VisitAllNodes(GenerateCorridor);
+        // ...
 
         // Generate pathfinding graph for all the rooms
         AddAllRoomsToPathGraph();
@@ -511,4 +497,3 @@ public class PathGraph
     }
 };
 ```
--->
