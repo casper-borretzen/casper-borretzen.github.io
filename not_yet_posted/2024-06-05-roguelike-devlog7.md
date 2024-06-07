@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #7: Raylib and ImGui"
+title: "C# Roguelike, devlog #7: Raylib and ImGui"
 ---
 
 Coming soon..

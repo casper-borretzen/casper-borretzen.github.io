@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #3: Pathfinding algorithms (Breath First Search (BFS) and A*)"
+title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search (BFS) and A*)"
 ---
 
 Coming soon..

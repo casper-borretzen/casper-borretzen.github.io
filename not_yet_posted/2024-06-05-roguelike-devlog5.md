@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #5: Djikstra maps"
+title: "C# Roguelike, devlog #5: Djikstra maps"
 ---
 
 Coming soon..

@@ -1,51 +1,173 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #2: Binary space partitioning (BSP) trees"
+title: "C# Roguelike, devlog #2: Binary space partitioning (BSP) trees"
 ---
 
-Coming soon..
+I thought I'd start the project with creating a simple fixed size map and rendering it in the console.
 
-<!--
-<https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation>
+The map generation technique I thought I'd try implementing involves using binary space partitioning to place rooms in a given space.
 
-> Map.cs
+The technique is explained in the video [Herbert Wolverson - Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298) (starting at 5:00).
+
+And in the roguebasin article [Basic BSP Dungeon generation](https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation).
+
+How a binary tree should function is quite well explained by Richard Fleming Jr in the videos [Binary Trees](https://youtu.be/S5y3ES4Rvkk) and [Tree Logic](https://youtu.be/Tb01dxMrIdc).
+
+<br>
+
+Let's start off by creaing a new directory and setting up a new dotnet project by running the command `dotnet new console --use-program-main`
+
+<br>
+
+Folder structure:
+
+![folder-structure](/img/screenshot_2024-06-07-021714.png)
+
+<br>
+
+Let's add a new file Rand.cs:
 
 ```csharp
+namespace Roguelike;
+
+/// <summary>
+/// Shared class for random generation.
+/// </summary>
+static class Rand 
+{
+    public static Random random { get; private set; } = new Random();
+    
+    public static bool Percent(int i)
+    {
+        return (random.Next(99) < i); 
+    }
+}
+```
+<br>
+
+Alright, let's modify Program.cs and then work our way down from there:
+
+```csharp
+namespace Roguelike;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Map map = new Map(96, 48);
+    }
+}
+```
+
+<br>
+
+Create a new file called Map.cs and add the following code:
+
+```csharp
+namespace Roguelike;
+
+/// <summary>
+/// World map.
+/// </summary>
 public class Map
 {
+    // Map size
     public readonly int width;
     public readonly int height;
 
     // Map data
     public BspTree tree { get; private set; }
-    private Tile[,] map;
+    private bool?[,] map;
 
     // Constructor
     public Map(int width, int height)
     {
         this.width = width;
         this.height = height;
-        this.map = new Tile[width, height];
+        this.map = new bool?[width, height];
         this.tree = new BspTree(this, width, height);
         BuildMap();
+        Render();
     }
+
+    // Build the map
+    private void BuildMap() {
+
+        // Build all rooms
+        tree.VisitAllNodes(BuildRoom);
+    }
+
+    // Build room from a node
+    private void BuildRoom(BspNode node)
+    {
+        if (node.HasRoom())
+        {
+            Room room = node.room;
+            BuildSpace(room.x, room.y, room.width, room.height, room.area);
+        }
+    }
+
+    // Transfer location to world space and carve out area
+    private void BuildSpace(int worldX, int worldY, int width, int height, bool?[,] area)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                if (area[x, y] != null){ map[worldX + x, worldY + y] = area[x, y]; }
+            }
+        }
+    }
+
+    // Render map as ascii characters
+    public void Render() {
+    Console.WriteLine("GENERATED MAP " + width.ToString() + "x" + height.ToString());
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                char tileChar = '.';
+
+                if (map[x, y] == true)
+                {
+                    tileChar = ' ';
+                }
+                else if (map[x, y] == false)
+                {
+                    tileChar = '#';
+                }
+                
+                // Write char to console
+                Console.Write(tileChar);
+            }
+
+            // Go to next line
+            Console.Write(Environment.NewLine);
+        }
+    }
+}
 ```
 
+<br>
 
-> BspTree.cs
+Next up let's add another file called BspTree.cs with the following code:
 
 ```csharp
+namespace Roguelike;
+
+/// <summary>
+/// Binary space partitioning (BSP) tree for map generation.
+/// </summary>
 public class BspTree
 {
-    // Fields
-    public readonly int id;
-    public readonly int x;
-    public readonly int y;
-    public readonly int width;
-    public readonly int height;
-
-    // Properties
+    // Tree count, increments every time a new tree is created
     public static int count { get; private set; } = 0;
+
+    public readonly int id;     // Tree id
+    public readonly int x;      // X position on map
+    public readonly int y;      // Y position on map
+    public readonly int width;  
+    public readonly int height; 
 
     // Parent
     public readonly Map map;
@@ -102,7 +224,7 @@ public class BspTree
     private void VisitLeaves(BspNode node, Action<BspNode> callback)
     {
         if (node.children[0] != null) { VisitLeaves(node.children[0], callback); }
-        if (node.children[1] != null) { VisitLeaves(node.children[1], callback); }
+        if (node.children[1] != null) { VisitLeaves(node.children[1], callback); }
         if (node.children[0] == null && node.children[1] == null) { callback(node); }
     }
 
@@ -140,27 +262,29 @@ public class BspTree
 }
 ```
 
+<br>
 
-> BspNode.cs
+Alright, now let's add the class for BSP nodes. Create a new file called BspNode.cs with the following code:
 
 ```csharp
-namespace Core;
+namespace Roguelike;
 
 /// <summary>
 /// Binary space partitioning (BSP) node for map generation.
 /// </summary>
 public class BspNode
 {
-    // Fields
+    // Node count, increments every time a new node is created
+    public static int count { get; private set; } = 0;
+
+    // The node splits recursively until the minSize is reached (in either dimension)
     private static int minSize = 12;
-    public readonly int id; 
-    public readonly int x;
-    public readonly int y;
+
+    public readonly int id;     // Node id
+    public readonly int x;      // X position on the map
+    public readonly int y;      // Y position on the map
     public readonly int width;
     public readonly int height;
-
-    // Properties
-    public static int count { get; private set; } = 0;
 
     // Parent tree
     public readonly BspTree tree;
@@ -173,16 +297,12 @@ public class BspNode
     
     // Node data
     public Room room { get; private set; } = null;
-    public Corridor corridor { get; set; } = null;
     
-    // Private
-
     // Constructor
     public BspNode(BspTree tree, int width, int height, int x = 0, int y = 0, BspNode parent = null)
     {
         this.id = count;
         count++;
-        Logger.Log("Making new node (" + id.ToString() + ")");
         this.tree = tree;
         this.parent = parent;
         this.x = x;
@@ -231,13 +351,6 @@ public class BspNode
         }
         return null;
     }
-    
-    // Return true if this node has a corridor
-    public bool HasCorridor()
-    {
-        if (corridor != null) { return true; }
-        return false;
-    }
 
     // Return true if this node has a room
     public bool HasRoom()
@@ -261,7 +374,6 @@ public class BspNode
         int widthChildRight = (x + width) - splitX;
         if (widthChildLeft > minSize && widthChildRight > minSize)
         {
-            Logger.Log("Splitting node (" + id.ToString() + ") horizontally");
             children[0] = new BspNode(tree, widthChildLeft, height, x, y, parent: this);
             children[1] = new BspNode(tree, widthChildRight, height, splitX, y, parent: this);
             return true;
@@ -277,7 +389,6 @@ public class BspNode
         int heightChildRight = (y + height) - splitY;
         if (heightChildLeft > minSize && heightChildRight > minSize)
         {
-            Logger.Log("Splitting node (" + id.ToString() + ") vertically");
             children[0] = new BspNode(tree, width, heightChildLeft, x, y, parent: this);
             children[1] = new BspNode(tree, width, heightChildRight, x, splitY, parent: this);
             return true;
@@ -327,21 +438,23 @@ public class BspNode
 }
 ```
 
+<br>
 
-> Room.cs
+Now let's move on to creating Room.cs:
 
 ```csharp
-namespace Core;
+namespace Roguelike;
 
 /// <summary>
 /// A room.
 /// </summary>
 public class Room
 {
-    // Fields
+    // The minimum size for a room (in either dimension)
     private static int minRoomSize = 5;
-    public readonly int x;
-    public readonly int y;
+
+    public readonly int x;      // X position on the map
+    public readonly int y;      // Y position on the map
     public readonly int width;
     public readonly int height;
     
@@ -350,12 +463,10 @@ public class Room
 
     // Room data
     public bool?[,] area { get; private set; }
-    public List<Vec2> lights { get; private set; } = new List<Vec2>();
 
     // Constructor
     public Room(BspNode node)
     {
-        Logger.Log("Making room in node (" + node.id + ")");
 
         // Set padding
         int paddingVertical = Rand.random.Next(2, Math.Clamp(node.height - minRoomSize, 2, 10));
@@ -392,11 +503,14 @@ public class Room
                 else { area[x,y] = true; }
             }
         }
-        
-        // Add light at random position
-        Vec2 lightPos = new Vec2(Rand.random.Next(1, width - 2), Rand.random.Next(1, height - 2));
-        if (area[lightPos.x, lightPos.y] == true) { lights.Add(lightPos); }
     }
 }
 ```
--->
+
+<br>
+
+And that's it for the first part of the BSP dungeon generator. In a later devlog we'll add corridors between the rooms.
+
+Running `dotnet run` should for now hopefully yield a result similar to this:
+
+[![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png)

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #6: Shadowcasting"
+title: "C# Roguelike, devlog #6: Shadowcasting"
 ---
 
 Coming soon..

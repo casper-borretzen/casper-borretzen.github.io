@@ -1,9 +1,31 @@
 ---
 layout: post
-title: "C# Roguelike, Devlog #4: Adding corridors to the dungeon"
+title: "C# Roguelike, devlog #4: Adding corridors to the dungeon"
 ---
 
 Coming soon..
+<!--
+    
+    // Node data
+    public Room room { get; private set; } = null;
+    public Corridor corridor { get; set; } = null;
+
+
+
+
+
+    
+    // Return true if this node has a corridor
+    public bool HasCorridor()
+    {
+        if (corridor != null) { return true; }
+        return false;
+    }
+
+
+
+
+-->
 
 <!--
 > BspTree.cs

@@ -17,7 +17,7 @@ body {
     text-rendering: optimizeLegibility;
 	line-height:1.5;
 	font-size: 1rem;
-	color: rgb(22, 23, 26);
+	color: #1C1C1C;
 }
 
 nav ul {
@@ -25,9 +25,13 @@ nav ul {
 }
 
 a {
-    color: #000;
+    color: #333333;
     text-decoration-skip-ink: auto;
     text-decoration: underline;
+}
+
+a:hover {
+    color: #666666;
 }
 
 pre {
@@ -51,12 +55,6 @@ pre {
 	margin: 2rem 0;
 }
 
-[data-lang]::before {
-  content: attr(data-lang);
-  display: block;
-  text-align: right;
-}
-
 code {
 	font-family: "IBM VGA 8x16";
 }
@@ -71,7 +69,7 @@ pre {
 }
 
 .highlight pre{
-	padding:0.25rem 0.5rem;
+	padding:0.5rem 1rem;
 }
 
 img {
