@@ -1,6 +1,6 @@
 title: Casper Eide Özdemir-Børretzen
 url: https://laser-wolf.github.io
-bash_user: laser_wolf@arch
+bash_user: laser-wolf@arch
 
 permalink: pretty
 baseurl: ""
@@ -12,9 +12,6 @@ kramdown:
 #    default_lang: csharp
 #    block:
 #      line_numbers: true
-
-toc:
-  ordered_list: true
 
 exclude:
   - .jekyll-cache
