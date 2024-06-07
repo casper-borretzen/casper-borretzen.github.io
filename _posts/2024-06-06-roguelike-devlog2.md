@@ -514,3 +514,5 @@ And that's it for the first part of the BSP dungeon generator. In a later devlog
 Running the command `dotnet run` should for now hopefully yield a result similar to this:
 
 [![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png)
+
+Here's a link to the project source files: [roguelike-devlog2.zip](/files/roguelike-devlog2.zip)
