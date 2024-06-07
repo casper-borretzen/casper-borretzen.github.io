@@ -15,7 +15,7 @@ How a binary tree should function is quite well explained by Richard Fleming Jr 
 
 <br>
 
-Let's start off by creaing a new directory and setting up a new dotnet project by running the command `dotnet new console --use-program-main`
+Let's start off by creating a new directory and setting up a new dotnet project by running the command `dotnet new console --use-program-main`
 
 <br>
 
