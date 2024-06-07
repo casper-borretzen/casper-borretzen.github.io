@@ -30,15 +30,8 @@ sass:
 plugins:
   - jekyll-paginate
   - jekyll-seo-tag
-  - jekyll-sitemap  
-  - jekyll-analytics
+  - jekyll-sitemap 
   - jekyll-feed
-  - jekyll-toc
-
-jekyll_analytics:
-  GoogleAnalytics:          # Add, if you want to track with Google Analytics
-    id: G-C555550WZD        # Required - replace with your tracking id
-    anonymizeIp: false      # Optional - Default: false - set to true for anonymized tracking
 
 collections:
   pages:
@@ -66,4 +59,3 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      toc: true

@@ -3,6 +3,7 @@ layout: default
 ---
 <section class="post">
   <h2>{{ page.title }}</h2>
-  {{ content | toc }}
+  {% include toc.html html=content id="toc" class="section-nav" ordered=true %}
+  {{ content }}
   <span class="meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
 </section>

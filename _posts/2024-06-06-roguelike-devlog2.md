@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "C# Roguelike, devlog #2: Binary space partitioning (BSP) trees"
+toc: false
 ---
 
 ### Introduction
