@@ -25,7 +25,7 @@ Folder structure:
 
 <br>
 
-Let's add a new file Rand.cs:
+Let's add a new file **Rand.cs**:
 
 ```csharp
 namespace Roguelike;
@@ -45,7 +45,7 @@ static class Rand
 ```
 <br>
 
-Alright, let's modify Program.cs and then work our way down from there:
+Alright, let's modify **Program.cs** and then work our way down from there:
 
 ```csharp
 namespace Roguelike;
@@ -61,7 +61,7 @@ class Program
 
 <br>
 
-Create a new file called Map.cs and add the following code:
+Create a new file called **Map.cs** and add the following code:
 
 ```csharp
 namespace Roguelike;
@@ -150,7 +150,7 @@ public class Map
 
 <br>
 
-Next up let's add another file called BspTree.cs with the following code:
+Next up let's add another file called **BspTree.cs** with the following code:
 
 ```csharp
 namespace Roguelike;
@@ -264,7 +264,7 @@ public class BspTree
 
 <br>
 
-Alright, now let's add the class for BSP nodes. Create a new file called BspNode.cs with the following code:
+Alright, now let's add the class for BSP nodes. Create a new file called **BspNode.cs** with the following code:
 
 ```csharp
 namespace Roguelike;
@@ -440,7 +440,7 @@ public class BspNode
 
 <br>
 
-Now let's move on to creating Room.cs:
+Now let's move on to creating **Room.cs**:
 
 ```csharp
 namespace Roguelike;
@@ -511,6 +511,6 @@ public class Room
 
 And that's it for the first part of the BSP dungeon generator. In a later devlog we'll add corridors between the rooms.
 
-Running `dotnet run` should for now hopefully yield a result similar to this:
+Running the command `dotnet run` should for now hopefully yield a result similar to this:
 
 [![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png)
