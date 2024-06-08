@@ -3,63 +3,148 @@ layout: post
 title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search (BFS) and A*)"
 ---
 
+### Introduction
+---
+
+text coming soon..
+
 - [Sebastian Lague, A* Pathfinding (algorithm explanation)](https://youtu.be/-L-WgKMFuhE){:target="_blank"}
 - [Amit Patel, Amit’s A* Pages](http://theory.stanford.edu/~amitp/GameProgramming/){:target="_blank"}
 - [Amit Patel, Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html){:target="_blank"}
 - [Amit Patel, Implementation of A*](https://www.redblobgames.com/pathfinding/a-star/implementation.html){:target="_blank"}
 - [Amit Patel, Breadth First Search: multiple start points](https://www.redblobgames.com/pathfinding/distance-to-any/){:target="_blank"}
 
+### Theory
+---
 
-**BspTree.cs**
+text coming soon..
 
-```csharp
+### Implementation
+---
+
+{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Map.cs|PathGraph.cs|Program.cs|Rand.cs|Room.cs|Vec2.cs" %}
+
+<div class="block-title">Map.cs:</div>
+
+```diff
+    // Map size
+    public readonly int width;
+    public readonly int height;
+
+    // Map data
+    public BspTree tree { get; private set; }
+    private bool?[,] map;
++   public readonly PathGraph pathGraph;
+
+    // Constructor
+    public Map(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+        this.map = new bool?[width, height];
++       this.pathGraph = new PathGraph(this);
+        this.tree = new BspTree(this, width, height);
+        BuildMap();
+        Render();
+    }
+
+    ...
+
++   public int MapCoord(int x, int y)
++   {
++       return (width * y) + x;
++   }
+
++   // Converts mapcoord to Vec2
++   public Vec2 MapCoordReverse(int coord)
++   {
++       return new Vec2(coord % width, coord / width);
++   }
+```
+
+<div class="block-title">BspTree.cs:</div>
+
+```diff
     // Constructor
     public BspTree(Map map, int width, int height, int x = 0, int y = 0)
     {
-        // ...
+        this.id = count;
+        count++;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.map = map;
+        
+        // Generate all nodes and rooms
+        this.root = new BspNode(this, width, height);
 
-        // Generate pathfinding graph for all the rooms
-        AddAllRoomsToPathGraph();
-
++       // Generate pathfinding graph for all the rooms
++       AddAllRoomsToPathGraph();
+        
         // Print info for all nodes
         VisitAllNodes(NodeInfo);
     }
 
 
-    // Add all the rooms to the pathfinding graph
-    public void AddAllRoomsToPathGraph()
-    {
-        BspNode[] nodes = NodeArray();
-        foreach (BspNode node in nodes) { if (node.HasRoom()) { map.pathGraph.AddRoom(node.room); }}
-    }
++   // Add all the rooms to the pathfinding graph
++   public void AddAllRoomsToPathGraph()
++   {
++       BspNode[] nodes = NodeArray();
++       foreach (BspNode node in nodes) { if (node.HasRoom()) { map.pathGraph.AddRoom(node.room); }}
++   }
 
     
-    // Return an array containing all nodes
-    public BspNode[] NodeArray()
-    {
-        BspNode[] nodeArray = new BspNode[BspNode.count];
-        NodeArrayAdd(root, ref nodeArray);
-        return nodeArray;
-    }
-    
-    // Traverse all child nodes and add to array
-    private void NodeArrayAdd(BspNode node, ref BspNode[] nodeArray)
-    {
-        nodeArray[node.id] = node;
-        if (node.children[0] != null) { NodeArrayAdd(node.children[0], ref nodeArray); }
-        if (node.children[1] != null) { NodeArrayAdd(node.children[1], ref nodeArray); }
-    }
-
++   // Return an array containing all nodes
++   public BspNode[] NodeArray()
++   {
++       BspNode[] nodeArray = new BspNode[BspNode.count];
++       NodeArrayAdd(root, ref nodeArray);
++       return nodeArray;
++   }
++   
++   // Traverse all child nodes and add to array
++   private void NodeArrayAdd(BspNode node, ref BspNode[] nodeArray)
++   {
++       nodeArray[node.id] = node;
++       if (node.children[0] != null) { NodeArrayAdd(node.children[0], ref nodeArray); }
++       if (node.children[1] != null) { NodeArrayAdd(node.children[1], ref nodeArray); }
++   }
 ```
 
-> PathGraph.cs
+<div class="block-title">Vec2.cs:</div>
+
+```csharp
+namespace Roguelike;
+
+/// <summary>
+/// Integer Vector 2.
+/// </summary>
+public class Vec2 
+{
+    public int x { get; set; }
+    public int y { get; set; }
+
+    public Vec2(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    public static Vec2 operator +(Vec2 a, Vec2 b)
+    {
+        return new Vec2(a.x + b.x, a.y + b.y);
+    }
+}
+```
+
+<div class="block-title">PathGraph.cs:</div>
 
 ```csharp
 namespace Core;
 
 /// <summary>
-/// A data structure that contains visitable locations and its neighbors.
-/// Also contains BFS, Djikstra and A* algorithms for pathfinding.
+/// A data structure that contains visitable locations and its neighbors and algorithms for pathfinding.
 /// </summary>
 public class PathGraph
 {
@@ -172,50 +257,6 @@ public class PathGraph
 
         // Target location not found
         return null;
-    }
-
-    // Dijkstra search to generate a map of weighted values to/from (depends if reverse is null or set) a list of start locations
-    public Dictionary<int, int> DijkstraMap(List<int> start, Dictionary<int, int> costs = null, int? reverse = null)
-    {
-        // Locations to visit
-        PriorityQueue<int, int> toVisit = new PriorityQueue<int, int>();
-
-        // Dictionary of all reached locations and the previously visited location
-        Dictionary<int, int> cameFrom = new Dictionary<int, int>();
-        
-        // Dictionary of all reached locations and cost to get there
-        Dictionary<int, int> costSoFar = new Dictionary<int, int>();
-        
-        // Add start locations
-        foreach (int location in start) 
-        { 
-            if (!HasLocation(location)) { return null; }
-            toVisit.Enqueue(location, 0);
-            cameFrom.Add(location, location);
-            costSoFar.Add(location, (reverse != null ? (int)(reverse) : 0)); 
-        }
-
-        // Start search
-        while (toVisit.Count > 0)
-        {
-            int current = toVisit.Dequeue();
-
-            // Search neighbors
-            foreach (int next in GetLocation(current))
-            {
-                int nextCost = (costs != null ? GetCost(costs, next, 1) : 1);
-                int newCost = (reverse != null ? costSoFar[current] - nextCost : costSoFar[current] + nextCost );
-                if (reverse != null ? (newCost > 0 && (!costSoFar.ContainsKey(next) || newCost > costSoFar[next])) : (!costSoFar.ContainsKey(next) || newCost < costSoFar[next]))
-                {
-                    toVisit.Enqueue(next, newCost);
-                    cameFrom[next] = current;
-                    costSoFar[next] = newCost;
-                }
-            }
-        }
-
-        // Return the map
-        return costSoFar;
     }
 
     // Breath First Search (BFS) to check if a valid path exists between start and end locations
@@ -406,12 +447,6 @@ public class PathGraph
         AddArea(room.x, room.y, room.width, room.height, room.area, modifyNeighbors);
     }
     
-    // Add all visitable locations from a room
-    public void AddCorridor(Corridor corridor, bool modifyNeighbors = false)
-    {
-        AddArea(corridor.x, corridor.y, corridor.width, corridor.height, corridor.area, modifyNeighbors);
-    }
-    
     // Add all visitable locations from an area
     public void AddArea(int worldX, int worldY, int width, int height, bool?[,] area, bool modifyNeighbors = false)
     {
@@ -457,8 +492,7 @@ public class PathGraph
                         }
                     }
                     
-                    // Check if neighbor the under current location is a visitable location
-
+                    // Check if neighbor under the under current location is a visitable location
                     bool downInBounds = worldY + y + 1 < map.height;
                     if (downInBounds) {
                         int downPosition = map.MapCoord(worldX + x, worldY + y + 1);
@@ -497,3 +531,82 @@ public class PathGraph
     }
 };
 ```
+
+### Conclusion
+---
+
+We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathfinding algorithms work:
+
+<div class="block-title">Map.cs:</div>
+
+```diff
+    // Map size
+    public readonly int width;
+    public readonly int height;
+
+    // Map data
+    public BspTree tree { get; private set; }
+-   private bool?[,] map;
++   public bool?[,] map;
+    public readonly PathGraph pathGraph;
+
+    // Constructor
+    public Map(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+        this.map = new bool?[width, height];
+        this.pathGraph = new PathGraph(this);
+        this.tree = new BspTree(this, width, height);
+        BuildMap();
++       // Pathfinding test
++       // (96 * y) + x position of start and target position in pathfinding test
++       if (pathGraph.BfsCheck((96*5) + 10, (96*10) + 20)) { Console.WriteLine("PATH FOUND!"); } else { Console.WriteLine("PATH NOT FOUND!"); }
+        Render();
+    }
+```
+
+<div class="block-title">PathGraph.cs:</div>
+
+```diff
+    // Breath First Search (BFS) to check if a valid path exists between start and end locations
+    public bool BfsCheck(int start, int target)
+    {
+        // Check if start/end locations are visitable
+        if (!HasLocation(start) || !HasLocation(target)) { return false; }
+
+        // Locations to visit
+        Queue<int> toVisit = new Queue<int>();
+        toVisit.Enqueue(start);
+
+        // Dictionary of all reached locations and the previously visited location
+        Dictionary<int, int> cameFrom = new Dictionary<int, int>();
+        cameFrom.Add(start, start);
+
+        // Start search
+        while (toVisit.Count > 0)
+        {
+            int current = toVisit.Dequeue();
+
++           // Render searched locations as wall (for testing)
++           Vec2 pos = map.MapCoordReverse(current);
++           map.map[pos.x, pos.y] = false;
+            
+            // Target found
+            if (current == target) { return true; }
+
+            // Search neighbors
+            foreach (int next in GetLocation(current))
+            {
+                if (!cameFrom.ContainsKey(next)) {
+                    toVisit.Enqueue(next);
+                    cameFrom.Add(next, current);
+                }
+            }
+        }
+```
+{% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
+
+[![screenshot](/img/screenshot_2024-06-08-024146.png)](/img/screenshot_2024-06-08-024146.png)
+
+Download the source code: [roguelike-devlog3.zip](/files/roguelike-devlog3.zip)

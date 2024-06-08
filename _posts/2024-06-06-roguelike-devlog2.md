@@ -26,7 +26,7 @@ text coming soon..
 
 {% include bash_command.html bash_command="mkdir Roguelike && cd Roguelike" %}
 
-{% include bash_command.html bash_command="dotnet new console --use-program-main" bash_dir="~/Roguelike" %}
+{% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet new console --use-program-main" %}
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Map.cs|Program.cs|Rand.cs|Room.cs" %}
 

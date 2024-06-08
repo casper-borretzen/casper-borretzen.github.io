@@ -6,6 +6,21 @@ title: "C# Roguelike, devlog #4: Adding corridors to the dungeon"
 Coming soon..
 
 <!--
+
+    
+    // Add all visitable locations from a room
+    public void AddCorridor(Corridor corridor, bool modifyNeighbors = false)
+    {
+        AddArea(corridor.x, corridor.y, corridor.width, corridor.height, corridor.area, modifyNeighbors);
+    }
+
+
+
+
+
+
+
+    
     
     // Node data
     public Room room { get; private set; } = null;
