@@ -16,7 +16,7 @@ text coming soon..
 ### Implementation
 ---
 
-{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Map.cs|PathGraph.cs|Program.cs|Rand.cs|Room.cs|Vec2.cs" %}
+{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|+Corridor.cs|Map.cs|PathGraph.cs|Program.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
 <div class="block-title">Map.cs:</div>
 
@@ -76,6 +76,8 @@ text coming soon..
 <div class="block-title">BspTree.cs:</div>
 
 ```diff
+    ...
+
     // Constructor
     public BspTree(Map map, int width, int height, int x = 0, int y = 0)
     {
@@ -172,6 +174,8 @@ text coming soon..
 +       // Return collision
 +       return collisionFound;
 +   }
+
+    ...
 ```
 
 <div class="block-title">BspNode.cs:</div>

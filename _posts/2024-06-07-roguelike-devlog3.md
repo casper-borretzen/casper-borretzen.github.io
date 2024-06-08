@@ -22,11 +22,13 @@ text coming soon..
 ### Implementation
 ---
 
-{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Map.cs|PathGraph.cs|Program.cs|Rand.cs|Room.cs|Vec2.cs" %}
+{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Map.cs|+PathGraph.cs|Program.cs|Rand.cs|Room.cs|+Vec2.cs" %}
 
 <div class="block-title">Map.cs:</div>
 
 ```diff
+    ...
+
     // Map size
     public readonly int width;
     public readonly int height;
@@ -60,11 +62,15 @@ text coming soon..
 +   {
 +       return new Vec2(coord % width, coord / width);
 +   }
+
+    ...
 ```
 
 <div class="block-title">BspTree.cs:</div>
 
 ```diff
+    ...
+
     // Constructor
     public BspTree(Map map, int width, int height, int x = 0, int y = 0)
     {
@@ -109,6 +115,8 @@ text coming soon..
 +       if (node.children[0] != null) { NodeArrayAdd(node.children[0], ref nodeArray); }
 +       if (node.children[1] != null) { NodeArrayAdd(node.children[1], ref nodeArray); }
 +   }
+
+    ...
 ```
 
 <div class="block-title">Vec2.cs:</div>
@@ -539,6 +547,8 @@ We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathf
 <div class="block-title">Map.cs:</div>
 
 ```diff
+    ...
+
     // Map size
     public readonly int width;
     public readonly int height;
@@ -563,11 +573,15 @@ We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathf
 +       if (pathGraph.BfsCheck((96*5) + 10, (96*10) + 20)) { Console.WriteLine("PATH FOUND!"); } else { Console.WriteLine("PATH NOT FOUND!"); }
         Render();
     }
+
+    ...
 ```
 
 <div class="block-title">PathGraph.cs:</div>
 
 ```diff
+    ...
+
     // Breath First Search (BFS) to check if a valid path exists between start and end locations
     public bool BfsCheck(int start, int target)
     {
@@ -603,6 +617,8 @@ We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathf
                 }
             }
         }
+
+    ...
 ```
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
