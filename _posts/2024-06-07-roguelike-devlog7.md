@@ -3,7 +3,32 @@ layout: post
 title: "C# Roguelike, devlog #7: Raylib and ImGui"
 ---
 
-Coming soon..
+### Introduction
+---
+
+text coming soon..
+
+- [Raylib Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
+- [Raymath Cheatsheet](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html)
+- [Raylib C# examples](https://github.com/ChrisDill/Raylib-cs/tree/master/Examples)
+- [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
+- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET)
+- [rlImGui-cs](https://github.com/raylib-extras/rlImGui-cs)
+
+### Theory
+---
+
+text coming soon..
+
+### Implementation
+---
+
+text coming soon..
+
+### Conclusion
+---
+
+text coming soon..
 
 <!--
 
@@ -33,3 +58,5 @@ Coming soon..
 
 ```
 -->
+
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)

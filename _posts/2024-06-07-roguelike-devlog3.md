@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search (BFS) and A*)"
+title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search and A*)"
 ---
 
 ### Introduction
@@ -86,7 +86,6 @@ text coming soon..
         VisitAllNodes(NodeInfo);
     }
 
-
 +   // Add all the rooms to the pathfinding graph
 +   public void AddAllRoomsToPathGraph()
 +   {
@@ -141,7 +140,7 @@ public class Vec2
 <div class="block-title">PathGraph.cs:</div>
 
 ```csharp
-namespace Core;
+namespace Roguelike;
 
 /// <summary>
 /// A data structure that contains visitable locations and its neighbors and algorithms for pathfinding.
@@ -610,3 +609,5 @@ We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathf
 [![screenshot](/img/screenshot_2024-06-08-024146.png)](/img/screenshot_2024-06-08-024146.png)
 
 Download the source code: [roguelike-devlog3.zip](/files/roguelike-devlog3.zip)
+
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)

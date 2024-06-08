@@ -3,9 +3,10 @@ layout: post
 title: "C# Roguelike, devlog #8: Mesh generation and cube to sphere projection"
 ---
 
-Coming soon..
+### Introduction
+---
 
-<!--
+text coming soon..
 
 - [Jasper Flick, Cube Sphere: Going from Cube to Sphere](https://catlikecoding.com/unity/tutorials/procedural-meshes/cube-sphere/)
 - [Amit Patel, Wraparound square tile maps on a sphere](https://www.redblobgames.com/x/1938-square-tiling-of-sphere/)
@@ -14,9 +15,19 @@ Coming soon..
 - [Lambers, M. (2019): Survey of Cube Mapping Methods in Interactive Computer Graphics](https://marlam.de/publications/cubemaps/lambers2019cubemaps.pdf)
 - [Lu, F., Song, Z., & Fang, X. (2014): Generation of orthogonal curvilinear grids on the sphere surface based on Laplace-Beltrami equations](https://iopscience.iop.org/article/10.1088/1755-1315/19/1/012012/pdf)
 
-> ?.cs
+### Theory
+---
 
-```csharp
+text coming soon..
 
-```
--->
+### Implementation
+---
+
+text coming soon..
+
+### Conclusion
+---
+
+text coming soon..
+
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)

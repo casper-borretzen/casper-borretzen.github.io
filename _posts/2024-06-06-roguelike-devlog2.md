@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #2: Binary space partitioning (BSP) trees"
+title: "C# Roguelike, devlog #2: Binary space partitioning trees"
 ---
 
 ### Introduction
@@ -513,3 +513,5 @@ And that's it for the first part of the BSP dungeon generator. In a later devlog
 [![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png)
 
 Download the source code: [roguelike-devlog2.zip](/files/roguelike-devlog2.zip)
+
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)

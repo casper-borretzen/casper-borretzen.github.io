@@ -3,12 +3,31 @@ layout: post
 title: "C# Roguelike, devlog #5: Djikstra maps"
 ---
 
-Coming soon..
+### Introduction
+---
+
+text coming soon..
+
+- [Brett Gildersleeve and Patrick Kenney, Applications of Dijkstra Maps in Roguelikes](https://youtu.be/2ExLEY32RgM)
+- [Brian Walker, The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps)
+- [Derrick S Creamer, Dijkstra Maps Visualized](https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized)
+
+### Theory
+---
+
+text coming soon..
+
+### Implementation
+---
+
+text coming soon..
+
+### Conclusion
+---
+
+text coming soon..
 
 <!--
-
-<https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps>
-<https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized>
 
 > ?.cs
 
@@ -58,3 +77,5 @@ Coming soon..
     }
 ```
 -->
+
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)
