@@ -321,7 +321,7 @@ public class Corridor
         if (collisionAllVisitable && tryFinishChunk) { return true;  }
 
         // Try to end the chunk after entering a room or a corridor
-        if (collisionRoom != false && collisionCorridor != false) { tryFinishChunk = true; }
+        if (collisionRoom != false && collisionCorridor != false) { tryFinishChunk = true; }
 
         return false;
     }
@@ -404,9 +404,9 @@ public class Corridor
             bool tryFinishChunk = false;
             while (!chunkDone && (x != xGoal || y != yGoal))
             {
-                if (!chunkDone && yGoal < y) { chunkDone = WalkUp(ref x, ref y, ref xPrev, ref yPrev, xGoal, yGoal, ref collisionRoomPrev, chunkArea, chunkDoors, ref tryFinishChunk); }
+                if (!chunkDone && yGoal < y) { chunkDone = WalkUp(ref x, ref y, ref xPrev, ref yPrev, xGoal, yGoal, ref collisionRoomPrev, chunkArea, chunkDoors, ref tryFinishChunk); }
                 if (!chunkDone && xGoal > x) { chunkDone = WalkRight(ref x, ref y, ref xPrev, ref yPrev, xGoal, yGoal, ref collisionRoomPrev, chunkArea, chunkDoors, ref tryFinishChunk); }
-                if (!chunkDone && yGoal > y) { chunkDone = WalkDown(ref x, ref y, ref xPrev, ref yPrev, xGoal, yGoal, ref collisionRoomPrev, chunkArea, chunkDoors, ref tryFinishChunk); }
+                if (!chunkDone && yGoal > y) { chunkDone = WalkDown(ref x, ref y, ref xPrev, ref yPrev, xGoal, yGoal, ref collisionRoomPrev, chunkArea, chunkDoors, ref tryFinishChunk); }
             }
             
             // Check if start location is valid, if not valid then check neighbors
