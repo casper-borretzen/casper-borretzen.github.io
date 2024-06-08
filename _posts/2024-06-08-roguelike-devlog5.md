@@ -3,6 +3,8 @@ layout: post
 title: "C# Roguelike, devlog #5: Djikstra maps"
 ---
 
+[![devlog](/img/devlog5.png)](/img/devlog5.png){:target="_blank"}
+
 ### Introduction
 ---
 

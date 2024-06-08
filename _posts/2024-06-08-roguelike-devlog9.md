@@ -15,6 +15,7 @@ text coming soon..
 - [Inigo Quilez, Value noise derivatives](https://iquilezles.org/articles/morenoise/){:target="_blank"}
 - [Amit Patel, Noise Functions and Map Generation](https://www.redblobgames.com/articles/noise/introduction.html){:target="_blank"}
 - [Amit Patel, Making maps with noise functions](https://www.redblobgames.com/maps/terrain-from-noise/){:target="_blank"}
+- [Inigo Quilez, Painting a Landscape with Maths](https://youtu.be/BFld4EBO2RE){:target="_blank"}
 - [Better Mountain Generators That Aren't Perlin Noise or Erosion](https://youtu.be/gsJHzBTPG0Y){:target="_blank"}
 - [How to use the Diffusion Aggregation algorithm to generate 2D maps for dungeons or biomes](https://www.noveltech.dev/unity-procgen-diffusion-aggregation){:target="_blank"}
 - [Herbert Wolverson, Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI){:target="_blank"}
