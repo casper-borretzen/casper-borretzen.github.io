@@ -8,55 +8,28 @@ title: "C# Roguelike, devlog #7: Raylib and ImGui"
 
 text coming soon..
 
-- [Raylib Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
-- [Raymath Cheatsheet](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html)
-- [Raylib C# examples](https://github.com/ChrisDill/Raylib-cs/tree/master/Examples)
-- [Raylib-cs](https://github.com/ChrisDill/Raylib-cs)
-- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET)
-- [rlImGui-cs](https://github.com/raylib-extras/rlImGui-cs)
-
-### Theory
----
-
-text coming soon..
+- [Raylib Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html){:target="_blank"}
+- [Raymath Cheatsheet](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html){:target="_blank"}
+- [Raylib C# examples](https://github.com/ChrisDill/Raylib-cs/tree/master/Examples){:target="_blank"}
+- [Raylib-cs](https://github.com/ChrisDill/Raylib-cs){:target="_blank"}
+- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET){:target="_blank"}
+- [rlImGui-cs](https://github.com/raylib-extras/rlImGui-cs){:target="_blank"}
 
 ### Implementation
 ---
 
 text coming soon..
 
+{% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet add package Raylib-cs" %}
+
+{% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet add package ImGui.NET" %}
+
+{% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet add package rlImgui-cs" %}
+
 ### Conclusion
 ---
 
 text coming soon..
 
-<!--
 
-- Raylib:
-  - [Main Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html)
-  - [Raymath Cheatsheet](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html)
-  - [C# examples](https://github.com/ChrisDill/Raylib-cs/tree/master/Examples)
-
-
-- Raylib-cs:
-  - <https://github.com/ChrisDill/Raylib-cs>
-  - `dotnet add package Raylib-cs`
-
-
-- ImGui.NET:
-  - <https://github.com/ImGuiNET/ImGui.NET>
-  - `donet add package ImGui.NET`
-
-
-- rlImGui-cs:
-  - <https://github.com/raylib-extras/rlImGui-cs>
-  - `dotnet add package rlImgui-cs`
-
-> ?.cs
-
-```csharp
-
-```
--->
-
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}

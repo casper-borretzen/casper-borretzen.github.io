@@ -6,21 +6,22 @@ title: "C# Roguelike, devlog #5: Djikstra maps"
 ### Introduction
 ---
 
-text coming soon..
+For this devlog I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* class by implementing an algorithm that returns what Brian Walker calls a Djikstra Map.
 
-- [Brett Gildersleeve and Patrick Kenney, Applications of Dijkstra Maps in Roguelikes](https://youtu.be/2ExLEY32RgM)
-- [Brian Walker, The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps)
-- [Derrick S Creamer, Dijkstra Maps Visualized](https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized)
+In the Roguebasin article [The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps){:target="_blank"} he explains a number of use cases for such a map.
 
-### Theory
----
+Visualizations of some examples can be seen in the Roguebasin article [Dijkstra Maps Visualized](https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized){:target="_blank"} by Derrick S Creamer.
 
-text coming soon..
+There is also the video presentation [Applications of Dijkstra Maps in Roguelikes](https://youtu.be/2ExLEY32RgM){:target="_blank"} by Brett Gildersleeve and Patrick Kenney.
 
 ### Implementation
 ---
 
-{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Map.cs|PathGraph.cs|Program.cs|Rand.cs|Room.cs|Vec2.cs" %}
+This implementation of the Djikstra algorithm is based on writings by [Amit Patel](https://x.com/redblobgames){:target="_blank"} on [redblobgames.com](https://www.redblobgames.com/){:target="_blank"}.
+
+As a start I thought I would try using a Djikstra map to generate a lightmap for the dungeon from a series of light sources (one light source placed randomly in each room). At the entries and exits for each room there are doors (though not rendered at the moment), and the doors should block most of the light, but let some light through.
+
+{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
 <div class="block-title">Room.cs:</div>
 
@@ -225,12 +226,12 @@ text coming soon..
 ### Conclusion
 ---
 
-text coming soon..
+And we now have light and dark areas on the map.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
-[![screenshot](/img/screenshot_2024-06-08-144624.png)](/img/screenshot_2024-06-08-144624.png)
+[![screenshot](/img/screenshot_2024-06-08-144624.png)](/img/screenshot_2024-06-08-144624.png){:target="_blank"}
 
-Download the source code: [roguelike-devlog5.zip](/files/roguelike-devlog5.zip)
+Download the source code: [roguelike-devlog5.zip](/files/roguelike-devlog5.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}

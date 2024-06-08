@@ -10,16 +10,11 @@ I thought I'd start the project with creating a simple fixed size map and render
 
 The map generation technique I thought I'd try implementing involves using binary space partitioning to place rooms in a given space.
 
-The technique is explained in the video presentation [Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298) by [Herbert Wolverson](https://x.com/herberticus).
+The technique is explained in the video presentation [Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298){:target="_blank"} by [Herbert Wolverson](https://x.com/herberticus){:target="_blank"}.
 
-And in the roguebasin article [Basic BSP Dungeon generation](https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation).
+And in the roguebasin article [Basic BSP Dungeon generation](https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation){:target="_blank"}.
 
-How a binary tree should function is quite well explained by Richard Fleming Jr in the videos [Binary Trees](https://youtu.be/S5y3ES4Rvkk) and [Tree Logic](https://youtu.be/Tb01dxMrIdc).
-
-### Theory
----
-
-text coming soon..
+How a binary tree should function is quite well explained by Richard Fleming Jr in the videos [Binary Trees](https://youtu.be/S5y3ES4Rvkk){:target="_blank"} and [Tree Logic](https://youtu.be/Tb01dxMrIdc){:target="_blank"}.
 
 ### Implementation
 ---
@@ -28,7 +23,9 @@ text coming soon..
 
 {% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet new console --use-program-main" %}
 
-{% include folder_tree.html root="Roguelike" content="+Roguelike.csproj,src|+BspNode.cs|+BspTree.cs|+Map.cs|+Program.cs|+Rand.cs|+Room.cs" %}
+{% include bash_command.html bash_dir="~/Roguelike" bash_command="mv src/Program.cs src/Game.cs" %}
+
+{% include folder_tree.html root="Roguelike" content="+Roguelike.csproj,src|+BspNode.cs|+BspTree.cs|+Game.cs|+Map.cs|+Rand.cs|+Room.cs" %}
 
 <div class="block-title">Rand.cs:</div>
 
@@ -49,12 +46,12 @@ static class Rand
 }
 ```
 
-<div class="block-title">Program.cs:</div>
+<div class="block-title">Game.cs:</div>
 
 ```csharp
 namespace Roguelike;
 
-class Program
+static class Game
 {
     static void Main(string[] args)
     {
@@ -510,8 +507,8 @@ And that's it for the first part of the BSP dungeon generator. In a later devlog
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
-[![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png)
+[![screenshot](/img/screenshot_2024-06-07-015701.png)](/img/screenshot_2024-06-07-015701.png){:target="_blank"}
 
-Download the source code: [roguelike-devlog2.zip](/files/roguelike-devlog2.zip)
+Download the source code: [roguelike-devlog2.zip](/files/roguelike-devlog2.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}

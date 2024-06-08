@@ -6,17 +6,12 @@ title: "C# Roguelike, devlog #4: Adding corridors to the dungeon"
 ### Introduction
 ---
 
-text coming soon..
-
-### Theory
----
-
-text coming soon..
+Now that some pathfinding algorithms are in place it's time to move on to the next step, making corridors between the rooms.
 
 ### Implementation
 ---
 
-{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|+Corridor.cs|Map.cs|PathGraph.cs|Program.cs|Rand.cs|Room.cs|Vec2.cs" %}
+{% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|+Corridor.cs|Game.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
 <div class="block-title">Map.cs:</div>
 
@@ -525,12 +520,12 @@ public class Corridor
 ### Conclusion
 ---
 
-text coming soon..
+And that's it, we can now make corridors. It might now be a very fast/efficient corridor generation implementation and it might not result in ideal gameplay (backtracking), but it'll do for now.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
-[![screenshot](/img/screenshot_2024-06-08-034604.png)](/img/screenshot_2024-06-08-034604.png)
+[![screenshot](/img/screenshot_2024-06-08-034604.png)](/img/screenshot_2024-06-08-034604.png){:target="_blank"}
 
-Download the source code: [roguelike-devlog4.zip](/files/roguelike-devlog4.zip)
+Download the source code: [roguelike-devlog4.zip](/files/roguelike-devlog4.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike)
+Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
