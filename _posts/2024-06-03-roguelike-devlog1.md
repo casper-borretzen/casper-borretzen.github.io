@@ -4,6 +4,8 @@ title: "C# roguelike, devlog 1: About roguelikes"
 toc: false
 ---
 
+![devlog](/img/devlog1_01.png){:target="_blank"}
+
 - \[Video\] [Josh Ge, How to Make a Roguelike](https://youtu.be/jviNpRGuCIU){:target="_blank"}
 - \[Video\] [Zach and Tarn Adams, Dwarf Fortress Design Inspirations](https://youtu.be/Zh6dnx9FM1g){:target="_blank"}
 - \[Video\] [How Two People Created Gaming’s Most Complex Simulation System](https://youtu.be/1ieGQ_YddX0){:target="_blank"}

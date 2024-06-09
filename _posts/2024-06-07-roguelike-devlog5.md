@@ -3,7 +3,7 @@ layout: post
 title: "C# roguelike, devlog 5: Dijkstra maps"
 ---
 
-[![devlog](/img/devlog5.png)](/img/devlog5.png){:target="_blank"}
+![devlog](/img/devlog5.png){:target="_blank"}
 
 ### Introduction
 ---

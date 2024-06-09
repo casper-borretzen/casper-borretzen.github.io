@@ -3,7 +3,7 @@ layout: post
 title: "C# roguelike, devlog 2: Binary space partitioning trees"
 ---
 
-[![devlog](/img/devlog2.png)](/img/devlog2.png){:target="_blank"}
+![devlog](/img/devlog2.png){:target="_blank"}
 
 ### Introduction
 ---
