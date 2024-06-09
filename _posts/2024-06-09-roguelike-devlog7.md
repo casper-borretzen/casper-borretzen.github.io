@@ -3,20 +3,24 @@ layout: post
 title: "C# roguelike, devlog 7: Raylib and ImGui"
 ---
 
+![devlog](/img/devlog7.png){:target="_blank"}
+
 ### Introduction
 ---
 
-text coming soon..
+It's time to bring the project into the third dimension by using the [raylib](https://www.raylib.com/){:target="_blank"} library.
 
-- [Raylib Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html){:target="_blank"}
-- [Raymath Cheatsheet](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html){:target="_blank"}
-- [Raylib C# examples](https://github.com/ChrisDill/Raylib-cs/tree/master/Examples){:target="_blank"}
-- [Raylib-cs](https://github.com/ChrisDill/Raylib-cs){:target="_blank"}
-- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET){:target="_blank"}
-- [rlImGui-cs](https://github.com/raylib-extras/rlImGui-cs){:target="_blank"}
+Raylib is written in C, but has bindings for a whole bunch of programming languages. The bindings for C# is [Raylib-cs](https://github.com/ChrisDill/Raylib-cs){:target="_blank"}.
+
+For documentation on how to use Raylib we can check the [C# usage examples](https://github.com/ChrisDill/Raylib-cs/tree/master/Examples){:target="_blank"}, the [Raylib Cheatsheet](https://www.raylib.com/cheatsheet/cheatsheet.html){:target="_blank"} and the [Raymath Cheatsheet](https://www.raylib.com/cheatsheet/raymath_cheatsheet.html){:target="_blank"}.
+
+In addition to raylib I'll add [Dear ImGui](https://github.com/ocornut/imgui){:target="_blank"} and use it first and foremost for debugging but perhaps also to build some tools later on.
+[ImGui.NET](https://github.com/ImGuiNET/ImGui.NET){:target="_blank"} is the C# wrapper for ImGui and to get ImGui to use raylib I'll also add the [rlImGui-cs](https://github.com/raylib-extras/rlImGui-cs){:target="_blank"} library.
 
 ### Implementation
 ---
+
+Here I'll setup a basic raylib/ImGui game loop and render the map and player using some simple geometric shapes. I'll also add a little minimap and a debug mode that can be accessed by pressing *Tab*. When the debug mode is active ImGui is visible.
 
 {% include folder_tree.html root="Roguelike" content="+Makefile,Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|+LogEntry.cs|+Logger.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
