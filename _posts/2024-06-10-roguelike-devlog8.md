@@ -8,8 +8,8 @@ title: "C# roguelike, devlog 8: Mesh generation and cube to sphere projection"
 
 text coming soon..
 
-- [Jasper Flick, Cube Sphere: Going from Cube to Sphere](https://catlikecoding.com/unity/tutorials/procedural-meshes/cube-sphere/){:target="_blank"}
 - [Amit Patel, Wraparound square tile maps on a sphere](https://www.redblobgames.com/x/1938-square-tiling-of-sphere/){:target="_blank"}
+- [Jasper Flick, Cube Sphere: Going from Cube to Sphere](https://catlikecoding.com/unity/tutorials/procedural-meshes/cube-sphere/){:target="_blank"}
 - [Zucker, M., & Higashi, Y. (2018): Cube-to-sphere projections for procedural texturing and beyond](https://www.jcgt.org/published/0007/02/01/paper-lowres.pdf){:target="_blank"}
 - [Dimitrijević, A., Lambers, M., & Rančić, D. (2016): Comparison of spherical cube map projections used in planet-sized terrain rendering](http://casopisi.junis.ni.ac.rs/index.php/FUMathInf/article/viewFile/871/pdf_75){:target="_blank"}
 - [Lambers, M. (2019): Survey of Cube Mapping Methods in Interactive Computer Graphics](https://marlam.de/publications/cubemaps/lambers2019cubemaps.pdf){:target="_blank"}
@@ -24,5 +24,7 @@ text coming soon..
 ---
 
 text coming soon..
+
+Here's a little video: <https://youtu.be/0PV7XQGF4gY>
 
 Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
