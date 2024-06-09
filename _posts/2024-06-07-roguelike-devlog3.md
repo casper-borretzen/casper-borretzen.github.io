@@ -10,7 +10,7 @@ title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search and
 
 Pathfinding is a crucial component in any game, and will be used in the next step of the dungeon generation to check if two given rooms already are connected when making corridors.
 
-There are two types of pathfinding I will implement for now, the first one is Breath First Search (BFS), and the second is A*.
+There are two types of pathfinding I will implement at this stage, the first one is Breath First Search (BFS), and the second is A*.
 
 The video [A* Pathfinding (algorithm explanation)](https://youtu.be/-L-WgKMFuhE){:target="_blank"} by [Sebastian Lague](https://x.com/sebastianlague){:target="_blank"} gives a very good visual explaination of the A* pathfinding algorithm.
 
@@ -24,11 +24,7 @@ To learn more about pathfinding algorithms and how to implement them I've used t
 
 This implementation is based on writings by Amit Patel.
 
-To have a low memory usage for later when working with bigger maps I've chosed to represent each location in the world as a single number ((map width * y) + x) of the type int (as opposed to using something else like a Vector2 or the custom class Vec2).
-
-Since an int has a max value of 2,147,483,647 we can have a max grid size of more or less 46.000 x 46.000 for the *PathGraph*.
-
-Switching to using uint would increase the max size, but since C# has better native support for ints we can just stick to that for now (to avoid a lot of casting when using built-in functions).
+With the goal of trying to keep the pathfinding datastructure as small and fast as possible I've chosed to represent each location in the world as a single number ((map width * y) + x) of the type int.
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Game.cs|Map.cs|+PathGraph.cs|Rand.cs|Room.cs|+Vec2.cs" %}
 

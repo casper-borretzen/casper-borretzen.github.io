@@ -8,7 +8,7 @@ title: "C# Roguelike, devlog #5: Djikstra maps"
 ### Introduction
 ---
 
-For this devlog I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* class by implementing an algorithm that returns what Brian Walker calls a Djikstra Map.
+For this devlog I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* class by implementing a function that returns what Brian Walker calls a Djikstra Map.
 
 In the Roguebasin article [The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps){:target="_blank"} he explains a number of use cases for such a map.
 
@@ -21,7 +21,7 @@ There is also the video presentation [Applications of Dijkstra Maps in Roguelike
 
 This implementation of the Djikstra algorithm is based on writings by [Amit Patel](https://x.com/redblobgames){:target="_blank"} on [redblobgames.com](https://www.redblobgames.com/){:target="_blank"}.
 
-As a start I thought I would try using a Djikstra map to generate a lightmap for the dungeon from a series of light sources (one light source placed randomly in each room). At the entries and exits for each room there are doors (though not rendered at the moment), and the doors should block most of the light, but let some light through.
+As a start I thought I would try using a Djikstra map to generate a lightmap for the dungeon from a series of light sources (one light source placed randomly in each room). At the exits for each room there are doors (though not rendered at the moment), and the doors should block most of the light, but let some light through.
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 

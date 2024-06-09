@@ -8,7 +8,7 @@ title: "C# Roguelike, devlog #6: Shadowcasting"
 ### Introduction
 ---
 
-Next up is adding a field-of-vision algorithm. Here I thought I would try to implement the incredible [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/){:target="_blank"} algorithm by Albert Ford.
+Next up is adding a field-of-vision algorithm. Here I thought I would try to implement the [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/){:target="_blank"} algorithm by Albert Ford.
 
 He explains Symmetric Shadowcasting very well in the video presentation [Vision Visualized](https://youtu.be/y1zkrTcNJbc){:target="_blank"}.
 
