@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #2: Binary space partitioning trees"
+title: "C# roguelike, devlog 2: Binary space partitioning trees"
 ---
 
 [![devlog](/img/devlog2.png)](/img/devlog2.png){:target="_blank"}

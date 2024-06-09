@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #4: Adding corridors to the dungeon"
+title: "C# roguelike, devlog 4: Adding corridors"
 ---
 
 [![devlog](/img/devlog4.png)](/img/devlog4.png){:target="_blank"}

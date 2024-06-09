@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #3: Pathfinding algorithms (Breath First Search and A*)"
+title: "C# roguelike, devlog 3: Pathfinding algorithms (Breath First Search and A*)"
 ---
 
 [![devlog](/img/devlog3.png)](/img/devlog3.png){:target="_blank"}

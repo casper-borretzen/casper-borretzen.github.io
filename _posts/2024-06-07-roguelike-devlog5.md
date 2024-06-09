@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #5: Djikstra maps"
+title: "C# roguelike, devlog 5: Djikstra maps"
 ---
 
 [![devlog](/img/devlog5.png)](/img/devlog5.png){:target="_blank"}
@@ -8,7 +8,7 @@ title: "C# Roguelike, devlog #5: Djikstra maps"
 ### Introduction
 ---
 
-For this devlog I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* class by implementing a function that returns what Brian Walker calls a Djikstra Map.
+I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* class by implementing a function that returns what Brian Walker calls a Djikstra Map.
 
 In the Roguebasin article [The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps){:target="_blank"} he explains a number of use cases for such a map.
 

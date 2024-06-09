@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #1: About the genre"
+title: "C# roguelike, devlog 1: About roguelikes"
 toc: false
 ---
 

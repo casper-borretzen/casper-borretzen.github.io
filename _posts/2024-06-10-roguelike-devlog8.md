@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# Roguelike, devlog #8: Mesh generation and cube to sphere projection"
+title: "C# roguelike, devlog 8: Mesh generation and cube to sphere projection"
 ---
 
 ### Introduction
