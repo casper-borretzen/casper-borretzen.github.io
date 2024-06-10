@@ -2,7 +2,7 @@
 layout: post
 title: "C# roguelike, devlog 8: Mesh generation and cube to sphere projection"
 #published: false
-hidden: true
+#hidden: true
 ---
 
 ![devlog](/img/devlog8.png){:target="_blank"}
