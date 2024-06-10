@@ -21,6 +21,12 @@ How a binary tree should function is quite well explained by Richard Fleming Jr 
 ### Implementation
 ---
 
+I'll setup a most basic *Map* class that contains a grid of nullable bools in a 2D array called `map`.
+
+Gridpoints with a *null* values is void space, *false* values means a wall is there and gridpoints that are set to *true*  are open traversable spaces.
+
+The *Map* class contains a binary tree that is used to build the map and set the values in the `map` array.
+
 A binary tree contains nodes, so I'll need to create a node class. I'll call this *BspNode*.
 
 I'll also need a class for the tree. I'll call this class *BspTree*.
@@ -51,6 +57,17 @@ The node class contains the following methods:
 - `TrySplitVertically()` Same as the previous mehtod, but with vertical split instead.
 - `MakeRoom()` Make a new room in the current node and store a reference to the new room.
 
+Then there's the *Room* class that actually creates the room.
+
+It has a `x` & `y` position, `width`, `height`, a reference to the parent `node` and `area`, a 2D array of nullable bools that works just like the array in *Map*.
+
+Upon creation it recieves the full width and height of the parent node, but some padding is added and the room is made a bit smaller to create some open spaces on the map that are not occupied by rooms.
+
+More rules can be added to the room, such as placing items or characters inside, but for now it'l just be a rectangle of open space surrounded by walls.
+
+And the last class to add for now is the static *Rand* class for random generation.
+
+Rand will make use of the build-in Random class.
 
 {% include bash_command.html bash_command="mkdir Roguelike && cd Roguelike" %}
 

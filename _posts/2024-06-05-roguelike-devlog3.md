@@ -14,7 +14,7 @@ There are two types of pathfinding I will implement at this stage, the first one
 
 The video [A* Pathfinding (algorithm explanation)](https://youtu.be/-L-WgKMFuhE){:target="_blank"} by [Sebastian Lague](https://x.com/sebastianlague){:target="_blank"} gives a very good visual explaination of the A* pathfinding algorithm.
 
-To learn more about pathfinding algorithms and how to implement them I've used the following writings by [Amit Patel](https://x.com/redblobgames){:target="_blank"}:
+The following writings by [Amit Patel](https://x.com/redblobgames){:target="_blank"} thought me about pathfinding algorithms and how to implement them:
 - [Amit Patel, Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html){:target="_blank"}
 - [Amit Patel, Implementation of A*](https://www.redblobgames.com/pathfinding/a-star/implementation.html){:target="_blank"}
 - [Amit Patel, Breadth First Search: multiple start points](https://www.redblobgames.com/pathfinding/distance-to-any/){:target="_blank"}
@@ -24,7 +24,7 @@ To learn more about pathfinding algorithms and how to implement them I've used t
 
 This implementation is based on writings by Amit Patel.
 
-With the goal of trying to keep the pathfinding datastructure as small and fast as possible I've chosed to represent each location in the world as a single number ((map width * y) + x) of the type int.
+With the goal of trying to keep the pathfinding datastructure as small and fast as possible I've chosed to represent each location in the world as a single number `((mapWidth * y) + x)` of the type *int*.
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Game.cs|Map.cs|+PathGraph.cs|Rand.cs|Room.cs|+Vec2.cs" %}
 
