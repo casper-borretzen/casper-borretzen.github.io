@@ -21,6 +21,37 @@ How a binary tree should function is quite well explained by Richard Fleming Jr 
 ### Implementation
 ---
 
+A binary tree contains nodes, so I'll need to create a node class. I'll call this *BspNode*.
+
+I'll also need a class for the tree. I'll call this class *BspTree*.
+
+The *BspTree* has an `id` that auto increments upon the creation of new trees, a world position stored as `x` & `y` and dimensions stored as `width` & `height`. It also contains a `map` reference to the *Map* object that created it and a reference to the `root` *BspNode* in the tree. Upon creation of the tree a new node is created and set as the `root`.
+
+The tree class contains methods for traversing and listing the nodes in the tree:
+- `NodeInfo()` Shows info about a given node.
+- `VisitNodes()` Traverses and visits all child nodes of a given node. On each visit a callback to a given function is made.
+- `VisitAllNodes()` Same as the previous method, but this method always starts at the root node so it traverses and visits all nodes in the entire tree.
+- `VisitLeaves()` Traverses all child nodes of a given node and visits nodes that are leaves. On each visit a callback to a given function is made.
+- `VisitAllLeaves()` Same as the previous method, but this method always starts at the root node so it traverses all nodes and visits all the leaf nodes in the entire tree.
+- `FindLeftLeaf()` Traverse the tree downwards and leftwards until a leaf is found. Returns a reference to the found leaf.
+- `FindRightLeaf()` Traverse the tree downwards and rightwards until a leaf is found. Returns a reference to the found leaf.
+- `LeafToLeafRight()` Traverse the tree from leaf to leaf in a rightwards direction. Returns a reference to the found leaf.
+
+The *BspNode* has an `id` that auto increments on the creation of a new node, a static `minSize` that defines the minimum allowed size for a node, `height` & `width` dimensions, a position relative to the tree stored as `x` & `y`, and references to it's `parent` node, the two `children` nodes and the `tree` it belongs to. The node optionally also contains `room` data. Upon creation the node splits itself, randomly either horizontally or vertically into smaller and smaller nodes recursively until the minimum size is reached. When the minimum size is reached a room is created in the node. The nodes at the bottom of the tree that contain rooms are called leaves. A leaf can be identified by not having any children. All nodes except for the root node has a parent and a sibling. The root node can be identified by not having a parent.
+
+The node class contains the following methods:
+- `GetLevel()` A method to check the node's depth level in the tree
+- `HasParent()` Checking if the node has a parent. This can be used to identify the root node when traversing the tree.
+- `IsSecondChild()` Checking if the current node is the first or second child of it's parent. This can be used during traversal.
+- `GetSibling()` Returns the sibling object.
+- `HasRoom()` Checks if the node contains room data. This can be useful when traversing the tree and looking for rooms. Though in the current setup the only nodes with rooms are leaves and all leaf nodes contain a rooms, so checking if a node is a leaf would give the same result.
+- `IsLeaf()` Checks if the node is a leaf.
+- `TrySplit()` Try to split the node into two child nodes. If the node is big enough it can be splitted, if not a room is created in the node instead of splitting.
+- `TrySplitHorizontal()` Try to split the node into two child nodes horizontally. Returns true if the split was a success or false if it failed.
+- `TrySplitVertically()` Same as the previous mehtod, but with vertical split instead.
+- `MakeRoom()` Make a new room in the current node and store a reference to the new room.
+
+
 {% include bash_command.html bash_command="mkdir Roguelike && cd Roguelike" %}
 
 {% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet new console --use-program-main" %}

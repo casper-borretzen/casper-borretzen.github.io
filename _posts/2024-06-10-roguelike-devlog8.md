@@ -425,6 +425,201 @@ public class Planet
 }
 ```
 
+### Extra: Generating the mesh for visualization of cube to sphere projection
+---
+
+This is not really used in the planet generation, but here's the code for the mesh i used to visualize the cube to sphere projection in the image on top of this page.
+
+This was inspired by Fig. 2.1 in *Dimitrijević, A., Lambers, M., & Rančić, D. (2016): Comparison of spherical cube map projections used in planet-sized terrain rendering*.
+
+```csharp
+    // Generate the 3D mesh for visualization of cube to sphere projection
+    private unsafe Mesh MakeMeshProjection()
+    {
+        int numVerts = 9;
+        int numTris = 24;
+        
+        // Allocate memory for the mesh
+        Mesh mesh = new(numVerts, numTris);
+        mesh.AllocVertices();
+        mesh.AllocColors();
+        mesh.AllocIndices();
+        
+        // Contigous regions of memory set aside for mesh data
+        Span<Vector3> vertices = mesh.VerticesAs<Vector3>();
+        Span<Color> colors = mesh.ColorsAs<Color>();
+        Span<ushort> indices = mesh.IndicesAs<ushort>();
+
+        ushort vertIndex = 0;
+        int triIndex = 0;
+        Color color = Color.White;
+
+        float s = (float)size * 0.5f;
+
+        // top rear left
+        vertices[0] = new Vector3(-s, s, -s);;
+        colors[0] = color;
+
+        // top rear right
+        vertices[1] = new Vector3(s, s, -s);;
+        colors[1] = color;
+
+        // top front left
+        vertices[2] = new Vector3(-s, s, s);;
+        colors[2] = color;
+
+        // top front right
+        vertices[3] = new Vector3(s, s, s);;
+        colors[3] = color;
+
+        // center
+        vertices[8] = new Vector3(0f, 0f, 0f);;
+        colors[8] = color;
+
+        // bottom rear left
+        vertices[4] = new Vector3(-s, -s, -s);;
+        colors[4] = color;
+
+        // bottom rear right
+        vertices[5] = new Vector3(s, -s, -s);;
+        colors[5] = color;
+
+        // bottom front left
+        vertices[6] = new Vector3(-s, -s, s);;
+        colors[6] = color;
+
+        // bottom front right
+        vertices[7] = new Vector3(s, -s, s);;
+        colors[7] = color;
+
+        // top left
+        indices[triIndex]     = 2;
+        indices[triIndex + 1] = 0;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 0;
+        indices[triIndex + 1] = 2;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // top right
+        indices[triIndex]     = 1;
+        indices[triIndex + 1] = 3;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 3;
+        indices[triIndex + 1] = 1;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // top rear
+        indices[triIndex]     = 0;
+        indices[triIndex + 1] = 1;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 1;
+        indices[triIndex + 1] = 0;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // top font
+        indices[triIndex]     = 2;
+        indices[triIndex + 1] = 3;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 3;
+        indices[triIndex + 1] = 2;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // bottom left
+        indices[triIndex]     = 4;
+        indices[triIndex + 1] = 6;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 6;
+        indices[triIndex + 1] = 4;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // bottom right
+        indices[triIndex]     = 5;
+        indices[triIndex + 1] = 7;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 7;
+        indices[triIndex + 1] = 5;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // bottom rear
+        indices[triIndex]     = 4;
+        indices[triIndex + 1] = 5;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 5;
+        indices[triIndex + 1] = 4;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // bottom font
+        indices[triIndex]     = 6;
+        indices[triIndex + 1] = 7;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 7;
+        indices[triIndex + 1] = 6;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // center left rear
+        indices[triIndex]     = 0;
+        indices[triIndex + 1] = 4;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 4;
+        indices[triIndex + 1] = 0;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // center left front
+        indices[triIndex]     = 2;
+        indices[triIndex + 1] = 6;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 6;
+        indices[triIndex + 1] = 2;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // center right rear
+        indices[triIndex]     = 1;
+        indices[triIndex + 1] = 5;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 5;
+        indices[triIndex + 1] = 1;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // center right front
+        indices[triIndex]     = 3;
+        indices[triIndex + 1] = 7;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+        indices[triIndex]     = 7;
+        indices[triIndex + 1] = 3;
+        indices[triIndex + 2] = 8;
+        triIndex += 3;
+
+        // Upload mesh data from CPU (RAM) to GPU (VRAM)
+        Raylib.UploadMesh(ref mesh, false);
+
+        // Return the finished mesh
+        return mesh;
+    }
+```
+
 ### Conclusion
 ---
 
