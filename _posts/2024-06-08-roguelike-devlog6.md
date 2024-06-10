@@ -120,6 +120,16 @@ static class Game
     {
         // NOTE: This is a very inefficient way to clear the console that will result in heavy flickering, but it's just a temporary sollution.
         Console.Clear();
+
+        // A slightly better alternative to Console.Clear() could perhaps be something like:
+        // string blank = new String(' ', 96);
+        // Console.SetCursorPosition(0, 0);
+        // for (int i = 0; i < 48; i++)
+        // {
+        //     Console.Write(blank + Environment.NewLine);
+        // }
+        // Console.SetCursorPosition(0, 0);
+
         map.Render();
     }
 }

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "C# roguelike, devlog 9: Noise and procedural terrain generation algorithms"
+#published: false
+hidden: true
 ---
 
 ### Introduction

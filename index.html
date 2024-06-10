@@ -5,7 +5,9 @@ layout: default
 <section class="posts">
 <ul>
 {% for post in site.posts %}
+{% unless post.hidden == true %}
 <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d-%m-%Y" }}</time></li>
+{% endunless %}
 {% endfor %}
 </ul>
 </section>

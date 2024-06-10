@@ -546,7 +546,7 @@ And there we have a 3D version of the project. Move around with the arrow keys, 
 
 [![screenshot](/img/screenshot_2024-06-09-132645.png)](/img/screenshot_2024-06-09-132645.png){:target="_blank"}
 
-Here's a short video of the result: <https://youtu.be/4X8wz6Xd8NU>
+Here's a short video of the result: [youtu.be/4X8wz6Xd8NU](https://youtu.be/4X8wz6Xd8NU){:target="_blank"}
 
 Download the source code: [roguelike-devlog7.zip](/files/roguelike-devlog7.zip){:target="_blank"}
 
