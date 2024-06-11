@@ -21,6 +21,10 @@ This implementation of the Dijkstra algorithm is based on articles by [Amit Pate
 
 As a start I thought I would try using a Dijkstra map to generate a lightmap for the dungeon from a series of light sources (one light source placed randomly in each room). At the exits for each room there are doors (though not rendered at the moment), and the doors should block most of the light, but let some light through.
 
+I'll add a new method `DijkstraMap()` to the *PathGraph* class. The method is very similar to the already existing `BfsMap()` but differs in that it has weighted edges, so movement has a default cost and it's possible to add "obstacles" by stating that moving over certain locations has a certain cost.
+
+I'll modify the *Room* class to randomly place a light source in each room, and the *Map* class to generate a lightmap when the map is made, with doors blocking light, and add light to the rendering to get a visual output of the result.
+
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
 <div class="block-title">Room.cs:</div>
