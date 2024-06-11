@@ -12,9 +12,7 @@ I thought I'd start the project with creating a simple fixed size map and render
 
 The map generation technique I thought I'd try implementing involves using binary space partitioning to place rooms in a given space.
 
-The technique is explained in the video presentation [Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298){:target="_blank"} by [Herbert Wolverson](https://x.com/herberticus){:target="_blank"}.
-
-And in the roguebasin article [Basic BSP Dungeon generation](https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation){:target="_blank"}.
+The technique is explained in the video presentation [Procedural Map Generation Techniques](https://youtu.be/TlLIOgWYVpI?t=298){:target="_blank"} by [Herbert Wolverson](https://x.com/herberticus){:target="_blank"}. And in the roguebasin article [Basic BSP Dungeon generation](https://roguebasin.com/index.php/Basic_BSP_Dungeon_generation){:target="_blank"}.
 
 How a binary tree should function is quite well explained by Richard Fleming Jr in the videos [Binary Trees](https://youtu.be/S5y3ES4Rvkk){:target="_blank"} and [Tree Logic](https://youtu.be/Tb01dxMrIdc){:target="_blank"}.
 
@@ -23,15 +21,15 @@ How a binary tree should function is quite well explained by Richard Fleming Jr 
 
 I'll setup a most basic *Map* class that contains a grid of nullable bools in a 2D array called `map`.
 
-Gridpoints with a *null* values is void space, *false* values means a wall is there and gridpoints that are set to *true*  are open traversable spaces.
+Bools with a *null* value are void spaces, *false* values are walls and bools that are set to *true*  are open spaces.
 
-The *Map* class contains a binary tree that is used to build the map and set the values in the `map` array.
+The `Map.Render()` method simply iterates through the array and prints a character on the screen according to the bool value.
 
-A binary tree contains nodes, so I'll need to create a node class. I'll call this *BspNode*.
+The *Map* class contains a binary space partitioning tree that is used to build the map and set the values in the `map` array.
 
-I'll also need a class for the tree. I'll call this class *BspTree*.
+I'll make a new class for binary space partitioning trees and call it *BspTree*.
 
-The *BspTree* has an `id` that auto increments upon the creation of new trees, a world position stored as `x` & `y` and dimensions stored as `width` & `height`. It also contains a `map` reference to the *Map* object that created it and a reference to the `root` *BspNode* in the tree. Upon creation of the tree a new node is created and set as the `root`.
+The *BspTree* has an `id` that auto increments upon the creation of new trees, a world position stored as `x` & `y` and dimensions stored as `width` & `height`. It also contains a `map` reference to the *Map* object that created it and a reference to the `root` node in the tree. Upon creation of the tree a new node is created and set as the `root`.
 
 The tree class contains methods for traversing and listing the nodes in the tree:
 - `NodeInfo()` Shows info about a given node.
@@ -42,6 +40,8 @@ The tree class contains methods for traversing and listing the nodes in the tree
 - `FindLeftLeaf()` Traverse the tree downwards and leftwards until a leaf is found. Returns a reference to the found leaf.
 - `FindRightLeaf()` Traverse the tree downwards and rightwards until a leaf is found. Returns a reference to the found leaf.
 - `LeafToLeafRight()` Traverse the tree from leaf to leaf in a rightwards direction. Returns a reference to the found leaf.
+
+A binary tree contains nodes, so I'll need to create a node class. I'll call this *BspNode*.
 
 The *BspNode* has an `id` that auto increments on the creation of a new node, a static `minSize` that defines the minimum allowed size for a node, `height` & `width` dimensions, a position relative to the tree stored as `x` & `y`, and references to it's `parent` node, the two `children` nodes and the `tree` it belongs to. The node optionally also contains `room` data. Upon creation the node splits itself, randomly either horizontally or vertically into smaller and smaller nodes recursively until the minimum size is reached. When the minimum size is reached a room is created in the node. The nodes at the bottom of the tree that contain rooms are called leaves. A leaf can be identified by not having any children. All nodes except for the root node has a parent and a sibling. The root node can be identified by not having a parent.
 
@@ -69,13 +69,15 @@ And the last class to add for now is the static *Rand* class for random generati
 
 Rand will make use of the build-in Random class.
 
+{% include folder_tree.html root="Roguelike" content="+Roguelike.csproj,src|+BspNode.cs|+BspTree.cs|+Game.cs|+Map.cs|+Rand.cs|+Room.cs" %}
+
+<div class="block-title">Creating a new C# project:</div>
+
 {% include bash_command.html bash_command="mkdir Roguelike && cd Roguelike" %}
 
 {% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet new console --use-program-main" %}
 
 {% include bash_command.html bash_dir="~/Roguelike" bash_command="mv src/Program.cs src/Game.cs" %}
-
-{% include folder_tree.html root="Roguelike" content="+Roguelike.csproj,src|+BspNode.cs|+BspTree.cs|+Game.cs|+Map.cs|+Rand.cs|+Room.cs" %}
 
 <div class="block-title">Rand.cs:</div>
 
@@ -553,7 +555,7 @@ public class Room
 ### Conclusion
 ---
 
-And that's it for the first part of the BSP dungeon generator. In a later devlog we'll add corridors between the rooms.
+And that's it for the first part of the BSP dungeon generator. In a later devlog I'll add corridors between the rooms.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 

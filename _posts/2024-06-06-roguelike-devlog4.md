@@ -522,7 +522,7 @@ public class Corridor
 ### Conclusion
 ---
 
-And that's it, we can now make corridors. It might now be a very fast/efficient corridor generation implementation and it might not result in ideal gameplay (backtracking), but it'll do for now.
+And that's it, corridors are now made between all the rooms connecting them together. It might not be a very fast and efficient implementation and it might not result in ideal gameplay (backtracking), but it'll do for now.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 

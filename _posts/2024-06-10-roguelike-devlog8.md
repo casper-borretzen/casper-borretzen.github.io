@@ -425,10 +425,10 @@ public class Planet
 }
 ```
 
-### Extra: Generating the mesh for visualization of cube to sphere projection
+### Extra
 ---
 
-This is not really used in the planet generation, but here's the code for the mesh i used to visualize the cube to sphere projection in the image on top of this page.
+This is not really used in the planet generation, but here's the code for the mesh i used to visualize the cube to sphere projection used in the image on top of this page.
 
 This was inspired by Fig. 2.1 in *Dimitrijević, A., Lambers, M., & Rančić, D. (2016): Comparison of spherical cube map projections used in planet-sized terrain rendering*.
 

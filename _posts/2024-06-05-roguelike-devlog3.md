@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C# roguelike, devlog 3: Pathfinding algorithms (Breath First Search and A*)"
+title: "C# roguelike, devlog 3: Pathfinding algorithms (Breadth-first search and A*)"
 ---
 
 ![devlog](/img/devlog3.png){:target="_blank"}
@@ -8,23 +8,50 @@ title: "C# roguelike, devlog 3: Pathfinding algorithms (Breath First Search and 
 ### Introduction
 ---
 
-Pathfinding is a crucial component in any game, and will be used in the next step of the dungeon generation to check if two given rooms already are connected when making corridors.
+Pathfinding is a crucial component in almost any game, and will be used in the next step of the dungeon generation to check if two given rooms are already connected when making corridors.
 
-There are two types of pathfinding I will implement at this stage, the first one is Breath First Search (BFS), and the second is A*.
+There are two types of pathfinding I will implement at this stage, the first one is *breadth-first search (BFS)*, and the second is *A\**.
 
 The video [A* Pathfinding (algorithm explanation)](https://youtu.be/-L-WgKMFuhE){:target="_blank"} by [Sebastian Lague](https://x.com/sebastianlague){:target="_blank"} gives a very good visual explaination of the A* pathfinding algorithm.
 
-The following writings by [Amit Patel](https://x.com/redblobgames){:target="_blank"} thought me about pathfinding algorithms and how to implement them:
-- [Amit Patel, Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html){:target="_blank"}
-- [Amit Patel, Implementation of A*](https://www.redblobgames.com/pathfinding/a-star/implementation.html){:target="_blank"}
-- [Amit Patel, Breadth First Search: multiple start points](https://www.redblobgames.com/pathfinding/distance-to-any/){:target="_blank"}
+The following articles by [Amit Patel](https://x.com/redblobgames){:target="_blank"} thought me about pathfinding algorithms and how to implement them:
+- [Introduction to the A* Algorithm](https://www.redblobgames.com/pathfinding/a-star/introduction.html){:target="_blank"}
+- [Implementation of A*](https://www.redblobgames.com/pathfinding/a-star/implementation.html){:target="_blank"}
+- [Breadth First Search: multiple start points](https://www.redblobgames.com/pathfinding/distance-to-any/){:target="_blank"}
 
 ### Implementation
 ---
 
-This implementation is based on writings by Amit Patel.
+I'll make a new class for pathfinding called *PathGraph* and add that to the *Map*.
 
-With the goal of trying to keep the pathfinding datastructure as small and fast as possible I've chosed to represent each location in the world as a single number `((mapWidth * y) + x)` of the type *int*.
+With the goal of trying to keep the pathfinding datastructure as small and fast as possible I've chosed to represent each location in the world as a single number `((mapWidth * y) + x)` of the type *int*. *uint* would perhaps be more suitable here since the numbers never are negative, but I'll stick with *int* since working with *ints* is much easier than with *uints* in C# (most built-in functions use *int* so when using *uint* it requires constant casting to *int*) and since the max value for *int* is 2,147,483,647, which should be much more than enough for any use case.
+
+To convert an x and y value to a single-number coordinate I'll add a `MapCoord()` method to the *Map* class.
+
+But I'll also be working with X and Y coordinates so I'll set up a new datatype *Vec2* for that. It works just like a built-in *Vector2*, but uses *ints* instead of *floats* (for now the *Vec2* is very simple, but I can add more functionality as needed later).
+
+In the *Map* class I'll also add a method `MapCoordReverse()` to convert a single-number map coordinate to a *Vec2*.
+
+In *BspTree* I'll add some methods so that all the visitable locations are added to the *PathGraph* after the rooms have been created.
+
+Next up is adding the *PathGraph* class.
+
+It contains a reference to the `map` it belongs to and a dictionary of all the `locations` that are visitable, and for each location an array of neighbouring locations that are visitable.
+
+It contains the following methods:
+- `AstarCheck()` Uses the A* algorithm to check if a valid path exists between two given points on the map. Returns true if a valid path exists or false if not.
+- `AstarPath()` Uses the A* algorithm to find a path between two given points on the map. It returns the path as a list of locations in order from start location to target location, or returns null if no valid path exists between the two given points.
+- `BfsCheck()` Same as `AstarCheck()`, but uses the Breadth-first search algorithm instead.
+- `BfsPath()` Same as `AstarPath()`, but uses the Breadth-first search algorithm instead.
+- `BfsMap()` Uses the Breadth-first search algorithm to visit any valid location from a given location and returns a dictionary of visited locations. The dictionary key is the visited location and the dictionary value is the distance from the start location. The method also has an optional reverse parameter given as an *int*. If a reverse value is given the search starts at the given value and decrements as it gets further away from the start location until reaching zero.
+- `Heuristic()` Gets the heuristic cost for a location. This is used in the A* algorithm to determine the cost for a given location.
+- `GetCost()` Checks a given dictionary for a given location and returns the cost for that location. If the dictionary does not contain the location a default value is returned instead.
+- `GetLocation()` Gets an array of all visitable neighbors of a given location from the `locations` dictionary.
+- `SetLocation()` Adds a new or changes an existing location in the `locations` dictionary.
+- `HasLocation()` Checks if the `locations` dictionary contains a given location.
+- `TryAddNeighbor()` Add a new neighbor to a location in the `locations` dictionary. But only add the neighbor if a) the dictionary contains the location, and b) the location doesn't have the neighbor already.
+- `AddRoom()` Add all visitable locations and from a given *Room* to the `locations` dictionary by using the `AddArea()` method.
+- `AddArea()` Add all visitable locations from a given area to the `locations` dictionary. For each location it cecks for visitable neighbors. If the modifiyNeighbors parameter is set to *true* a check will also be made to see if the `locations` dictionary already contains the neighbor and modify it to add the current location as a neighbor. This is a more expensive operation, and isn't needed if adding isolated areas. But if adding an area that connects to an area that already exists in `locations` then modifyNeighbors should be set to *true*.
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Game.cs|Map.cs|+PathGraph.cs|Rand.cs|Room.cs|+Vec2.cs" %}
 
@@ -270,7 +297,7 @@ public class PathGraph
         return null;
     }
 
-    // Breath First Search (BFS) to check if a valid path exists between start and end locations
+    // Breadth-first search (BFS) to check if a valid path exists between start and end locations
     public bool BfsCheck(int start, int target)
     {
         // Check if start/end locations are visitable
@@ -306,7 +333,7 @@ public class PathGraph
         return false;
     }
     
-    // Breath First Search (BFS) to find the shortest path between two locations
+    // Breadth-first search (BFS) to find the shortest path between two locations
     public List<int> BfsPath(int start, int target)
     {
         // Check if start/end locations are visitable
@@ -359,7 +386,7 @@ public class PathGraph
         return null;
     }
     
-    // Breath First Search (BFS) to generate a map of values to/from (depends if reverse is null or not) a list of start locations
+    // Breadth-first search (BFS) to generate a map of values to/from (depends if reverse is null or not) a list of start locations
     public Dictionary<int, int> BfsMap(List<int> start, int? reverse = null)
     {
         // Locations to visit
@@ -546,7 +573,7 @@ public class PathGraph
 ### Conclusion
 ---
 
-We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathfinding algorithms work:
+I'll temporarily modify *Map.cs* and *PathGraph.cs* a bit to test the pathfinding algorithms:
 
 <div class="block-title">Map.cs:</div>
 
@@ -586,7 +613,7 @@ We can temporarily modify *Map.cs* and *PathGraph.cs* a bit to test if the pathf
 ```diff
     ...
 
-    // Breath First Search (BFS) to check if a valid path exists between start and end locations
+    // Breadth-first search (BFS) to check if a valid path exists between start and end locations
     public bool BfsCheck(int start, int target)
     {
         // Check if start/end locations are visitable

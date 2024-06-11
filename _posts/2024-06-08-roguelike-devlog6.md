@@ -10,9 +10,7 @@ title: "C# roguelike, devlog 6: Shadowcasting"
 ### Introduction
 ---
 
-Next up is adding a field-of-vision algorithm. Here I thought I would try to implement the [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/){:target="_blank"} algorithm by Albert Ford.
-
-He explains Symmetric Shadowcasting very well in the video presentation [Vision Visualized](https://youtu.be/y1zkrTcNJbc){:target="_blank"}.
+Next up is adding a field-of-view algorithm. Here I thought I would try to implement the [Symmetric Shadowcasting](https://www.albertford.com/shadowcasting/){:target="_blank"} algorithm by Albert Ford. He explains Symmetric Shadowcasting very well in the video presentation [Vision Visualized](https://youtu.be/y1zkrTcNJbc){:target="_blank"}.
 
 Another approach to shadowcasting can be found in the blog post [What the Hero Sees: Field-of-View for Roguelikes](https://journal.stuffwithstuff.com/2015/09/07/what-the-hero-sees/){:target="_blank"} by [Bob Nystrom](https://x.com/munificentbob){:target="_blank"}
 
@@ -21,9 +19,7 @@ For further reading on field-of-view algorithms check out the post (as reference
 ### Implementation
 ---
 
-This implementation is based on the Symmetric Shadowcasting algorithm by Albert Ford.
-
-In addition to the shadowcasting algorithm we'll also add a player character that can move around on the map with the arrow keys, and rewrite the *Game* class to add a basic game loop.
+In addition to the shadowcasting algorithm I'll also add a player character that can move around on the map with the arrow keys, and rewrite the *Game* class to add a basic game loop.
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|Map.cs|PathGraph.cs|+Player.cs|Rand.cs|Room.cs|+ShadowCast.cs|Vec2.cs" %}
 
@@ -431,12 +427,12 @@ public static class Shadowcast
 }
 ```
 
-### Alternative algorithm
+### Extra
 ---
 
 Here is an alternative shadowcasting algorithm based on [What the Hero Sees: Field-of-View for Roguelikes](https://journal.stuffwithstuff.com/2015/09/07/what-the-hero-sees/) by [Bob Nystrom](https://x.com/munificentbob).
 
-But this implementation isn't 100% complete and needs some more work (since I so far couldn't get corners of rooms to be set as visible properly).
+But this implementation isn't 100% complete and needs some more work (since so far I couldn't get corners of rooms to be set as visible properly).
 
 <div class="block-title">Player.cs:</div>
 
@@ -630,7 +626,7 @@ public static class ShadowcastAlt
 ### Conclusion
 ---
 
-And there we have it. We now have a super basic game loop in place and a player we can move around with the arrow keys in a very simple dungeon.
+A super basic game loop is in place with a player that can move around with the arrow keys in a very simple dungeon.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 

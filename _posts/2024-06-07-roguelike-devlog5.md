@@ -10,16 +10,14 @@ title: "C# roguelike, devlog 5: Dijkstra maps"
 
 I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* class by implementing a function that returns what Brian Walker calls a Dijkstra Map.
 
-In the Roguebasin article [The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps){:target="_blank"} he explains a number of use cases for such a map.
-
-Visualizations of some examples can be seen in the Roguebasin article [Dijkstra Maps Visualized](https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized){:target="_blank"} by Derrick S Creamer.
+In the Roguebasin article [The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps){:target="_blank"} he explains a number of use cases for such a map, and example visualizations can be seen in the other article [Dijkstra Maps Visualized](https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized){:target="_blank"} by Derrick S Creamer.
 
 There is also the video presentation [Applications of Dijkstra Maps in Roguelikes](https://youtu.be/2ExLEY32RgM){:target="_blank"} by Brett Gildersleeve and Patrick Kenney.
 
 ### Implementation
 ---
 
-This implementation of the Dijkstra algorithm is based on writings by [Amit Patel](https://x.com/redblobgames){:target="_blank"} on [redblobgames.com](https://www.redblobgames.com/){:target="_blank"}.
+This implementation of the Dijkstra algorithm is based on articles by [Amit Patel](https://x.com/redblobgames){:target="_blank"} on [redblobgames.com](https://www.redblobgames.com/){:target="_blank"}.
 
 As a start I thought I would try using a Dijkstra map to generate a lightmap for the dungeon from a series of light sources (one light source placed randomly in each room). At the exits for each room there are doors (though not rendered at the moment), and the doors should block most of the light, but let some light through.
 
@@ -228,7 +226,7 @@ As a start I thought I would try using a Dijkstra map to generate a lightmap for
 ### Conclusion
 ---
 
-And we now have light and dark areas on the map.
+And now there's light and dark areas on the map. Light should travel with it's intensity decreasing gradually, or if it hits a door almost all the light is blocked, but some light gets through.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
