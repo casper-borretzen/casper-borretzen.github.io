@@ -8,7 +8,7 @@ title: "C# roguelike, devlog 3: Pathfinding algorithms (Breadth-first search and
 ### Introduction
 ---
 
-Pathfinding is a crucial component in almost any game, and will be used in the next step of the dungeon generation to check if two given rooms are already connected when making corridors.
+Pathfinding is a crucial component in almost any video game, and will be used in the next step of the dungeon generation to check if two given rooms are already connected when making corridors.
 
 There are two types of pathfinding I will implement at this stage, the first one is *breadth-first search (BFS)*, and the second is *A\**.
 

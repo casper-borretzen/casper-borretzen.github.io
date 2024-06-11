@@ -15,6 +15,28 @@ Now that some pathfinding algorithms are in place it's time to move on to the ne
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|+Corridor.cs|Game.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
+Upon creation a corridor should take two points on the *Map* as arguments and then walk step by step from the start location to the end location and generate walkable space. Placing a door when exiting or entering a room. Additionally to avoid duplicate paths a corridor should only be made between two rooms if no path between the rooms already exits.
+
+I'll add a new *Corridor* class with `x` & `y` coordinates, `width` & `height` dimensions and a reference to the parent `node`. The *Corridor* data will be stored in a 2D `area` array similar to how areas are stored in in *Room* and *Map*, and additionally the corridor will have a list of `doors` with each door stored as a single-number coordinate *int*.
+
+In the constructor the two points given as arguments are evaluted. If the first point is to the right of the second point they get switched so that point 0 (`x0` & `y0`) is always to the left of point 1 (`x1` & `y1`). Then a check is made to see if point 0 is above or below point 1. Let's imagine a box drawn between the two points. The `x` and `y` values of the *Corridor* are set to the upper-left corner of the box, the `width` & `height` are set to the width & height of the imagined box, and the `area` is set to a new 2D array with the same dimensions. Then the `Generate()` method gets called with a startPointBelow bool as an argument, indicating if point 0 is below point 1.
+
+- The `Generate()` method sets a start point and a goal point, it then proceeds to walk the entire distance by calling `WalkUp()`, `WalkRight()` and `WalkDown()` in a loop until the goal point is reached. There is a random chance that a walk is interrupted from time to time, resulting in corridors that are not always straight, but sometimes cornered. The corridor generation is done in chunks, collision checks are performed on every step of the walk to check if the current location or its immediate neighbors are already defined as walkable space in a previously made room or corridor. If a location of previously made walkable space is reached the current chunk is ended and evaluated. The evaluation checks if a valid path already exists between the start point of the chunk and the end point. If a valid path already exits the chunk is discarded, but if a valid path does not already exist then the chunk is added to the `area` and becomes part of the final *Corridor*. The process is repeated chunk by chunk until the final goal point is reached. 
+- `WalkUp()`, `WalkRight()` and `WalkDown()` walks location by location from a given point towards a given point. On each step there is a small chance that the walk is interrupted. And each location on each step of the way is processed by calling `HandleLocation()`.
+- `HandleLocation()` checks if the current location and its neighbors are already walkable space in a previously made room or corridor. It tracks the exiting and entering of rooms along the walk and places doors when exiting or entering. It also tells `Generate()` to end the current chunk when reaching, on the current location or on its neighboring locations, already walkable space.
+
+In the *PathGraph* class I'll add a method for adding corridors to the graph.
+
+I'll modify the *BspNode* class and add a `corridor` class to it, plus adding a method `HasCorridor()` that checks if there is a corridor for the current node.
+
+In the *BspTree* class I'll add a `GenerateCorridor()` method that get's called for all nodes after the rooms have been added to the *PathGraph*, and some methods for collision checking, to see if a given point in the tree is part of a room or a corridor and if it is walkable space.
+
+- `GenerateCorridor()` This method only runs on nodes that have children. It finds the room in the rightmost leaf of the left side child and room in the leftmost leaf of the right child of a given node. It then picks a random point in each of the two rooms, checks if a valid path exists between them, and if no path already exists then a new corridor is created between the rooms.
+- `CheckCollision()` Checks if a given point is within a room or a corridor and returns the nullable bool from the selected point, where *null* is, as before, void space, but *true* and *false* is flipped, so *true* means wall collision found and a *false* value means open space. The method can check for rooms and corridors at the same time, or check only rooms or only corridors depending on the given arguments. The check is performed on a given node and recursively checks all child nodes.
+- `CheckCollisionAll()` Performs collision check for all nodes in the entire tree by calling `CheckCollision()` on the root node.
+
+Finally in the *Map* class I'll add some new methods for adding the corridors of the tree to the map.
+
 <div class="block-title">Map.cs:</div>
 
 ```diff
@@ -522,7 +544,7 @@ public class Corridor
 ### Conclusion
 ---
 
-And that's it, corridors are now made between all the rooms connecting them together. It might not be a very fast and efficient implementation and it might not result in ideal gameplay (backtracking), but it'll do for now.
+And that's it, corridors are now made between all the rooms connecting them together. It might not be a super fast and efficient implementation and it might not result in ideal gameplay (backtracking), but it'll do for now.
 
 {% include bash_command.html bash_command="dotnet run" bash_dir="~/Roguelike" %}
 
