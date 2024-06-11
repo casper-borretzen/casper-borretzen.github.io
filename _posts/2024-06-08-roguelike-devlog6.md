@@ -21,6 +21,14 @@ For further reading on field-of-view algorithms check out the post (as reference
 
 In addition to the shadowcasting algorithm I'll also add a player character that can move around on the map with the arrow keys, and rewrite the *Game* class to add a basic game loop.
 
+I'll create a new static *Shadowcast* class, and it'll contain the Symmetric Shadowcast algorithm. See the link above for more information on how it works.
+
+I'll quickly make a *Player* class too, and add some basic functionality like spawning on the *Map* and moving around, plus add calls to the static *Shadowcast* class to check what's visible from the player's position.
+
+In the *Map* class I'll add some methods for checking if a location blocks vision, like a wall, if a location has has been seen by the player before at some point and a method to check if a given loction is currently visible. Locations that have been seen are stored in a list, and locations that are currently visible are stored in a seperate list.
+
+In *Game* I'll add a super simple game loop that get's user input and renders text in the console.
+
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|Map.cs|PathGraph.cs|+Player.cs|Rand.cs|Room.cs|+ShadowCast.cs|Vec2.cs" %}
 
 <div class="block-title">Game.cs:</div>

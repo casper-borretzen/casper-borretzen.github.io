@@ -15,7 +15,7 @@ Now that some pathfinding algorithms are in place it's time to move on to the ne
 
 {% include folder_tree.html root="Roguelike" content="Roguelike.csproj,src|BspNode.cs|BspTree.cs|+Corridor.cs|Game.cs|Map.cs|PathGraph.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
-Upon creation a corridor should take two points on the *Map* as arguments and then walk step by step from the start location to the end location and generate walkable space. Placing a door when exiting or entering a room. Additionally to avoid duplicate paths a corridor should only be made between two rooms if no path between the rooms already exits.
+Upon creation a corridor should take two points on the *Map* as arguments and then walk step by step from the start location to the end location and generate walkable space along the way. Placing a door when exiting or entering a room. Additionally to avoid duplicate paths a corridor should only be made between two rooms if no path between the rooms already exits.
 
 I'll add a new *Corridor* class with `x` & `y` coordinates, `width` & `height` dimensions and a reference to the parent `node`. The *Corridor* data will be stored in a 2D `area` array similar to how areas are stored in in *Room* and *Map*, and additionally the corridor will have a list of `doors` with each door stored as a single-number coordinate *int*.
 

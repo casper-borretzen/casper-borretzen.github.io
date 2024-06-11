@@ -23,6 +23,8 @@ Plus the following papers (as mentioned by Amit Patel):
 ### Implementation
 ---
 
+For planet generation I'll make the six cube faces out of 1x1 grids. Then fold the faces into a cube and turn the cube into a sphere.
+
 The planet texture for UV testing can be downloaded [here](/files/uv_checker_cubemap_1024.png){:target="_blank"}.
 
 I made the texture from an image found [here](

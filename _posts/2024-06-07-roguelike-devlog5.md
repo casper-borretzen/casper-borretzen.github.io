@@ -12,8 +12,6 @@ I thought I'd expand on the existing pathfinding algorithms in the *PathGraph* c
 
 In the Roguebasin article [The Incredible Power of Dijkstra Maps](https://www.roguebasin.com/index.php/The_Incredible_Power_of_Dijkstra_Maps){:target="_blank"} he explains a number of use cases for such a map, and example visualizations can be seen in the other article [Dijkstra Maps Visualized](https://www.roguebasin.com/index.php/Dijkstra_Maps_Visualized){:target="_blank"} by Derrick S Creamer.
 
-There is also the video presentation [Applications of Dijkstra Maps in Roguelikes](https://youtu.be/2ExLEY32RgM){:target="_blank"} by Brett Gildersleeve and Patrick Kenney.
-
 ### Implementation
 ---
 

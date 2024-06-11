@@ -30,7 +30,7 @@ Adding Raylib and ImGui to the project is very easy by using the NuGet package m
 
 {% include bash_command.html bash_dir="~/Roguelike" bash_command="dotnet add package rlImgui-cs" %}
 
-When working with Raylib we'll use pointers when reading stuff like texture data from RAM. To allow the use of pointers in C# *[AllowUnsafeBlocks](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/language#allowunsafeblocks){:target="_blank"}* needs to be set to true in the .csproj file, additionally any method using pointers needs to include the *[unsafe](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/unsafe){:target="_blank"}* keyword.
+When working with Raylib we'll use pointers when reading stuff like texture data from memory. To allow the use of pointers in C# *[AllowUnsafeBlocks](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/language#allowunsafeblocks){:target="_blank"}* needs to be set to true in the .csproj file, additionally any method using pointers needs to include the *[unsafe](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/unsafe){:target="_blank"}* keyword.
 
 <div class="block-title">Roguelike.csproj:</div>
 
