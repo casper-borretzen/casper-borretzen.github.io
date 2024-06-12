@@ -23,14 +23,110 @@ Plus the following papers (as mentioned by Amit Patel):
 ### Implementation
 ---
 
-For planet generation I'll make the six cube faces out of 1x1 grids. Then fold the faces into a cube and turn the cube into a sphere.
+For planet generation I'll make the six cube faces out of grids of 1x1 squares. Then fold the faces into a cube and turn the cube into a sphere.
+
+The vertices on a cube face should be shared between the neighboring squares in the grid, so there needs to be some rules that dictate which squares should create new vertices and on which corners, and a way for squares to find the index value of previously created vertices and use those when creating the triangles for the current square.
+
+The rules for which squares create which vertices are as follows:
+- All squares need to create a new vertex in the lower-right corner.
+- All the leftmost squares need to create a new vertex in the lower-left corner.
+- All the topmost squares need to create a new vertex in the top-right corner.
+
+The rules for finding the vertex index values of squares to the left or above the current square are as follows:
+```csharp
+vertTopLeft = currentVertIndex - (size + (x == 0 ? 1 : 2));
+vertTopRight = vertTopLeft + 1;
+vertBottomLeft = currentVertIndex - 1;
+if (y == 0)
+{
+    vertTopLeft = currentVertIndex - (x == 1 ? 3 : 2);
+}
+if (y == 1)
+{
+    vertTopLeft += (x == 0 ? x + 1 : x) - size;
+    vertTopRight = vertTopLeft + (x == 0 ? 1 : 2);
+}
+```
+
+So it's actually super simple and the process of creating a planet would be like this: Let's say the planet has the size 3, which means creating 6 cube faces of 3x3 grids of 1x1 squares. That means that the triangles in each cube face will require (3 + 1) * (3 + 1) vertices. So each face will have 16 vertices and 18 triangles, totalling to 108 triangles and 96 squares. The vertex index value will start at zero and go to 95, and all the squares will use the rules above to find the correct vertex index for it's corners.
+
+Here's an illustration of the process with an asterisk placed next to vertices in the square that they are created in:
+
+![devlog](/img/devlog8_gen.png){:target="_blank"}
+
+For the formula used to transform the cube to a sphere I've used the one from Jasper Flick's *Cube Sphere* tutorial:
+
+![devlog](/img/devlog8_cube_sphere_formula.png){:target="_blank"}
+
+I'm not sure if this the best way to adapt the formula in C#, but to get it to work properly I had to divide the Vector3 point by (size * 0.5f) before applying the formula and then multiplying the Vector3 point by (size * 0.5f) after applying the formula:
+
+```csharp
+private Vector3 TransformCubeToSphere(Vector3 p)
+{
+    p /= size * 0.5f;
+    float x = p.X * (float)Math.Sqrt(1f - (((p.Y * p.Y) + (p.Z * p.Z)) / (2f)) + (((p.Y * p.Y) * (p.Z * p.Z)) / (3f)));
+    float y = p.Y * (float)Math.Sqrt(1f - (((p.X * p.X) + (p.Z * p.Z)) / (2f)) + (((p.X * p.X) * (p.Z * p.Z)) / (3f)));
+    float z = p.Z * (float)Math.Sqrt(1f - (((p.X * p.X) + (p.Y * p.Y)) / (2f)) + (((p.X * p.X) * (p.Y * p.Y)) / (3f)));
+    return new Vector3(x, y, z) * (size * 0.5f);
+}
+```
+
+Then there's the calculation of normals for the vertices. Since the planet is just a flat sphere at this point it's super easy, and the normals are just a normalized version of the Vector3 point: `normals[vertIndex] = Vector3.Normalize(vertices[vertIndex])`.
+
+But the vertices will also need UV coordinates for texturing the mesh.
+
+Here's an illustration of the layout I'll use for the planet texture, with the big numbers being the cube face index:
+
+![devlog](/img/devlog8_uv.png){:target="_blank"}
+
+Note: The V axis usually goes from bottom-to-top during UV mapping, but when using Raylib it seems to go from top-to-bottom by default, which in my opinion is preferable and much easier to work with.
+
+I'll use the following rules when setting the UV coordinates for each vertex:
+
+```csharp
+float texCoordUStart = 0f;
+float texCoordVStart = 0f;
+float texCoordUSize = 1f / 3f;
+float texCoordVSize = 1f / 2f;
+switch (face)
+{
+    case 0:
+        texCoordUStart = 0f;
+        texCoordVStart = 0f;
+        break;
+    case 1:
+        texCoordUStart = texCoordUSize;
+        texCoordVStart = 0f;
+        break;
+    case 2:
+        texCoordUStart = texCoordUSize * 2;
+        texCoordVStart = 0f;
+        break;
+    case 3:
+        texCoordUStart = 0f;
+        texCoordVStart = texCoordVSize;
+        break;
+    case 4:
+        texCoordUStart = texCoordUSize;
+        texCoordVStart = texCoordVSize;
+        break;
+    case 5:
+        texCoordUStart = texCoordUSize * 2;
+        texCoordVStart = texCoordVSize;
+        break;
+}  
+float texCoordLeft   = texCoordUStart + ((float)x * (texCoordUSize / (float)size));
+float texCoordRight  = texCoordUStart + (((float)x + 1f) * (texCoordUSize / (float)size));
+float texCoordTop    = texCoordVStart + ((float)y * (texCoordVSize / (float)size));
+float texCoordBottom = texCoordVStart + (((float)y + 1f) * (texCoordVSize / (float)size));
+```
 
 The planet texture for UV testing can be downloaded [here](/files/uv_checker_cubemap_1024.png){:target="_blank"}.
 
 I made the texture from an image found [here](
 https://github.com/ThexXTURBOXx/UVCheckerMapGenerator){:target="_blank"}.
 
-In this step I'll disable the map and player while I'm focusing on the planet generation.
+Note: In this part of the project I'll disable the map and player while I'm focusing on the planet generation.
 
 {% include folder_tree.html root="Roguelike" content="assets|+uv_checker_cubemap_1024.png,Makefile,Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|LogEntry.cs|Logger.cs|Map.cs|PathGraph.cs|+Planet.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
@@ -270,11 +366,11 @@ public class Planet
     // Cube to sphere projection
     private Vector3 TransformCubeToSphere(Vector3 p)
     {
-        p /= size / 2f;
+        p /= size * 0.5f;
         float x = p.X * (float)Math.Sqrt(1f - (((p.Y * p.Y) + (p.Z * p.Z)) / (2f)) + (((p.Y * p.Y) * (p.Z * p.Z)) / (3f)));
         float y = p.Y * (float)Math.Sqrt(1f - (((p.X * p.X) + (p.Z * p.Z)) / (2f)) + (((p.X * p.X) * (p.Z * p.Z)) / (3f)));
         float z = p.Z * (float)Math.Sqrt(1f - (((p.X * p.X) + (p.Y * p.Y)) / (2f)) + (((p.X * p.X) * (p.Y * p.Y)) / (3f)));
-        return new Vector3(x, y, z) * (size * 0.75f);
+        return new Vector3(x, y, z) * (size * 0.5f);
     }
 
     // Generate the 3D mesh for the planet
@@ -315,41 +411,41 @@ public class Planet
                 for (int x = 0; x < size; x++)
                 {
                     // Set UV cordinates for vertices on the current grid position
-                    float texCoordXStart = 0f;
-                    float texCoordYStart = 0f;
-                    float texCoordXSize = 1f / 3f;
-                    float texCoordYSize = 1f / 2f;
+                    float texCoordUStart = 0f;
+                    float texCoordVStart = 0f;
+                    float texCoordUSize = 1f / 3f;
+                    float texCoordVSize = 1f / 2f;
                     switch (face)
                     {
                         case 0:
-                            texCoordXStart = 0f;
-                            texCoordYStart = 0f;
+                            texCoordUStart = 0f;
+                            texCoordVStart = 0f;
                             break;
                         case 1:
-                            texCoordXStart = texCoordXSize;
-                            texCoordYStart = 0f;
+                            texCoordUStart = texCoordUSize;
+                            texCoordVStart = 0f;
                             break;
                         case 2:
-                            texCoordXStart = texCoordXSize * 2;
-                            texCoordYStart = 0f;
+                            texCoordUStart = texCoordUSize * 2;
+                            texCoordVStart = 0f;
                             break;
                         case 3:
-                            texCoordXStart = 0f;
-                            texCoordYStart = texCoordYSize;
+                            texCoordUStart = 0f;
+                            texCoordVStart = texCoordVSize;
                             break;
                         case 4:
-                            texCoordXStart = texCoordXSize;
-                            texCoordYStart = texCoordYSize;
+                            texCoordUStart = texCoordUSize;
+                            texCoordVStart = texCoordVSize;
                             break;
                         case 5:
-                            texCoordXStart = texCoordXSize * 2;
-                            texCoordYStart = texCoordYSize;
+                            texCoordUStart = texCoordUSize * 2;
+                            texCoordVStart = texCoordVSize;
                             break;
                     }  
-                    float texCoordLeft   = texCoordXStart + ((float)x * (texCoordXSize / (float)size));
-                    float texCoordRight  = texCoordXStart + (((float)x + 1f) * (texCoordXSize / (float)size));
-                    float texCoordTop    = texCoordYStart + ((float)y * (texCoordYSize / (float)size));
-                    float texCoordBottom = texCoordYStart + (((float)y + 1f) * (texCoordYSize / (float)size));
+                    float texCoordLeft   = texCoordUStart + ((float)x * (texCoordUSize / (float)size));
+                    float texCoordRight  = texCoordUStart + (((float)x + 1f) * (texCoordUSize / (float)size));
+                    float texCoordTop    = texCoordVStart + ((float)y * (texCoordVSize / (float)size));
+                    float texCoordBottom = texCoordVStart + (((float)y + 1f) * (texCoordVSize / (float)size));
                     
                     // Set vertex indexes
                     int vertIndexStart = vertIndex;
