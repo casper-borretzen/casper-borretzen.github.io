@@ -20,7 +20,7 @@ Plus the following papers (as mentioned by Amit Patel):
 - [Lambers, M. (2019): Survey of Cube Mapping Methods in Interactive Computer Graphics](https://marlam.de/publications/cubemaps/lambers2019cubemaps.pdf){:target="_blank"}
 - [Lu, F., Song, Z., & Fang, X. (2014): Generation of orthogonal curvilinear grids on the sphere surface based on Laplace-Beltrami equations](https://iopscience.iop.org/article/10.1088/1755-1315/19/1/012012/pdf){:target="_blank"}
 
-### Implementation
+### Procedure
 ---
 
 For planet generation I'll make the six cube faces out of grids of 1x1 squares. Then fold the faces into a cube and turn the cube into a sphere.
@@ -128,9 +128,12 @@ float texCoordTop    = texCoordVStart + ((float)y * (texCoordVSize / (float)size
 float texCoordBottom = texCoordVStart + (((float)y + 1f) * (texCoordVSize / (float)size));
 ```
 
-The final result looks like this:
+Here is an example of a texture applied to the generated sphere:
 
 ![devlog](/img/devlog8_textured_sphere.png){:target="_blank"}
+
+### Implementation
+---
 
 {% include folder_tree.html root="Roguelike" content="assets|+uv_checker_cubemap_1024.png,Makefile,Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|LogEntry.cs|Logger.cs|Map.cs|PathGraph.cs|+Planet.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
