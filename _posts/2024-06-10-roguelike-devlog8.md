@@ -77,9 +77,14 @@ Then there's the calculation of normals for the vertices. Since the planet is ju
 
 But the vertices will also need UV coordinates for texturing the mesh.
 
-Here's an illustration of the layout I'll use for the planet texture, with the big numbers being the cube face index:
 
-![devlog](/img/devlog8_uv.png){:target="_blank"}
+Here is an indexed illustration of the unfolded cube:
+
+![devlog](/img/devlog8_indexed_unfolded_cube.png){:target="_blank"}
+
+And here's an indexed illustration of the layout I'll use for the planet texture:
+
+![devlog](/img/devlog8_indexed_texture.png){:target="_blank"}
 
 Note: The V axis usually goes from bottom-to-top during UV mapping, but when using Raylib it seems to go from top-to-bottom by default, which in my opinion is preferable and much easier to work with.
 
@@ -123,14 +128,18 @@ float texCoordTop    = texCoordVStart + ((float)y * (texCoordVSize / (float)size
 float texCoordBottom = texCoordVStart + (((float)y + 1f) * (texCoordVSize / (float)size));
 ```
 
-The planet texture for UV testing can be downloaded [here](/files/uv_checker_cubemap_1024.png){:target="_blank"}.
+The final result looks like this:
+
+![devlog](/img/devlog8_textured_sphere.png){:target="_blank"}
+
+{% include folder_tree.html root="Roguelike" content="assets|+uv_checker_cubemap_1024.png,Makefile,Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|LogEntry.cs|Logger.cs|Map.cs|PathGraph.cs|+Planet.cs|Rand.cs|Room.cs|Vec2.cs" %}
+
+The `uv_checker_cubemap_1024.png` texture for testing of UV mapping can be downloaded [here](/files/uv_checker_cubemap_1024.png){:target="_blank"}.
 
 I made the texture from an image found [here](
 https://github.com/ThexXTURBOXx/UVCheckerMapGenerator){:target="_blank"}.
 
 Note: In this part of the project I'll disable the map and player while I'm focusing on the planet generation.
-
-{% include folder_tree.html root="Roguelike" content="assets|+uv_checker_cubemap_1024.png,Makefile,Roguelike.csproj,src|BspNode.cs|BspTree.cs|Corridor.cs|Game.cs|LogEntry.cs|Logger.cs|Map.cs|PathGraph.cs|+Planet.cs|Rand.cs|Room.cs|Vec2.cs" %}
 
 <div class="block-title">Game.cs:</div>
 

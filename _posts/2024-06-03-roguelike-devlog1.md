@@ -25,6 +25,7 @@ toc: false
 - [The 10-Year Journey of Ultima Ratio Regum: The Culture Generating Roguelike](https://youtu.be/giIIoIKntnw){:target="_blank"}
 - [Brian Bucklew & Jason Grinblat, End-to-End Procedural Generation in Caves of Qud](https://youtu.be/jV-DZqdKlnE){:target="_blank"}
 - [Jason Grinblat, Procedurally Generating History in Caves of Qud](https://youtu.be/H0sLa1y3BW4){:target="_blank"}
+- [Santiago Zapata, What is a Roguelike](https://youtu.be/wwc7pZqs9UA){:target="_blank"}
 
 <div class="block-title">Audio:</div>
 
