@@ -28,9 +28,9 @@ For planet generation I'll make the six cube faces out of grids of 1x1 squares. 
 The vertices on a cube face should be shared between the neighboring squares in the grid, so there needs to be some rules that dictate which squares should create new vertices and on which corners, and a way for squares to find the index value of previously created vertices and use those when creating the triangles for the current square.
 
 The rules for which squares create which vertices are as follows:
-- All squares need to create a new vertex in the lower-right corner.
-- All the leftmost squares need to create a new vertex in the lower-left corner.
-- All the topmost squares need to create a new vertex in the top-right corner.
+1. All squares need to create a new vertex in the lower-right corner.
+2. All the leftmost squares need to create a new vertex in the lower-left corner.
+3. All the topmost squares need to create a new vertex in the top-right corner.
 
 The rules for finding the vertex index values of squares to the left or above the current square are as follows:
 ```csharp
@@ -48,7 +48,9 @@ if (y == 1)
 }
 ```
 
-So it's actually super simple and the process of creating a planet would be like this: Let's say the planet has the size 3, which means creating 6 cube faces of 3x3 grids of 1x1 squares. That means that the triangles in each cube face will require (3 + 1) * (3 + 1) vertices. So each face will have 16 vertices and 18 triangles, totalling to 108 triangles and 96 squares. The vertex index value will start at zero and go to 95, and all the squares will use the rules above to find the correct vertex index for it's corners.
+So it's actually super simple and the process of creating a planet would be like this: 
+
+Let's say the planet has the size 3, which means creating 6 cube faces of 3x3 grids of 1x1 squares. That means that the triangles in each cube face will require (3 + 1) * (3 + 1) vertices and (3 * 3) * 2 triangles (two triangles for each square). So each face will have 16 vertices and 18 triangles, totalling 108 triangles and 96 squares. The vertex index value will start at zero and go to 95, and all the squares will use the rules above to find the correct vertex index for it's corners.
 
 Here's an illustration of the process with an asterisk placed next to vertices in the square that they are created in:
 

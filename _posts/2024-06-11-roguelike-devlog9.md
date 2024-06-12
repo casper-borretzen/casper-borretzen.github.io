@@ -25,11 +25,6 @@ text coming soon..
 - [Brian Walker, How Does Level Generation Work In Brogue?](https://www.rockpapershotgun.com/how-do-roguelikes-generate-levels){:target="_blank"}
 - [Amit Patel, Polygonal Map Generation for Games](http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation/){:target="_blank"}
 
-### Theory
----
-
-text coming soon..
-
 ### Implementation
 ---
 
@@ -39,13 +34,5 @@ text coming soon..
 ---
 
 text coming soon..
-
-<!--
-> ?.cs
-
-```csharp
-
-```
--->
 
 Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}

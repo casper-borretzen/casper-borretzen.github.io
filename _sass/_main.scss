@@ -244,7 +244,10 @@ figcaption {
 	font-weight: bold;
 }
 
-ul {
+ul, ol {
 	list-style-position: inside;
+}
+
+ul {
 	list-style-type: "⁃ ";
 }
