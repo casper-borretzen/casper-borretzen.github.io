@@ -548,4 +548,4 @@ Here's a short video of the result: [youtu.be/4X8wz6Xd8NU](https://youtu.be/4X8w
 
 Download the source code: [roguelike-devlog7.zip](/files/roguelike-devlog7.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
+Find the project on GitHub: [casper-borretzen/Roguelike](https://github.com/casper-borretzen/Roguelike){:target="_blank"}

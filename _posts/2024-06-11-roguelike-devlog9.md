@@ -35,4 +35,4 @@ text coming soon..
 
 text coming soon..
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
+Find the project on GitHub: [casper-borretzen/Roguelike](https://github.com/casper-borretzen/Roguelike){:target="_blank"}

@@ -552,4 +552,4 @@ And that's it, corridors are now made between all the rooms connecting them toge
 
 Download the source code: [roguelike-devlog4.zip](/files/roguelike-devlog4.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
+Find the project on GitHub: [casper-borretzen/Roguelike](https://github.com/casper-borretzen/Roguelike){:target="_blank"}

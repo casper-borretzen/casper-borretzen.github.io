@@ -236,4 +236,4 @@ And now there's light and dark areas on the map. Light should travel with it's i
 
 Download the source code: [roguelike-devlog5.zip](/files/roguelike-devlog5.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
+Find the project on GitHub: [casper-borretzen/Roguelike](https://github.com/casper-borretzen/Roguelike){:target="_blank"}

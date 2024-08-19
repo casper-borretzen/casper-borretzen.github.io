@@ -657,4 +657,4 @@ I'll temporarily modify *Map.cs* and *PathGraph.cs* a bit to test the pathfindin
 
 Download the source code: [roguelike-devlog3.zip](/files/roguelike-devlog3.zip){:target="_blank"}
 
-Find the project on GitHub: [LASER-WOLF/Roguelike](https://github.com/LASER-WOLF/Roguelike){:target="_blank"}
+Find the project on GitHub: [casper-borretzen/Roguelike](https://github.com/casper-borretzen/Roguelike){:target="_blank"}
