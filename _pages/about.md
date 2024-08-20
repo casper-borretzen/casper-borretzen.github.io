@@ -3,7 +3,21 @@ layout: page
 title: About me
 ---
 
-<!--![portrait](portrait_round_x300.png)-->
+<style>
+.about-me-container {
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+justify-content: flex-start;
+align-items: center;
+align-content: stretch;
+gap: 15px 2vw;
+}
+</style>
+
+
+
+<div class="about-me-container">
 <img src="portrait_round_x300.png" alt="portrait">
 
 Heya! My name is Casper Eide Özdemir-Børretzen and on this site I post some posts from time to time.
@@ -14,3 +28,5 @@ In addition to this website you can also find me on the following platforms:
 If you want to get in touch you can send me an email at [casper.eide@gmail.com](mailto:casper.eide@gmail.com).
 
 I would also like to use this space to give a big thanks to [Gustavo Pezzi](https://pikuma.com/){:target="_blank"} for making absolutely amazing computer science courses that have thought me so, so much!
+
+</div>
