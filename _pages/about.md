@@ -3,6 +3,8 @@ layout: page
 title: About me
 ---
 
+![portrait](portrait_round_x600.png)
+
 Heya! My name is Casper Eide Özdemir-Børretzen and on this site I post some posts from time to time.
 
 In addition to this website you can also find me on the following platforms:
