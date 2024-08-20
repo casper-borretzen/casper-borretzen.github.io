@@ -3,7 +3,8 @@ layout: page
 title: About me
 ---
 
-![portrait](portrait_round_x300.png)
+<!--![portrait](portrait_round_x300.png)-->
+<img style="float:left;" src="portrait_round_x300.png" alt="portrait">
 
 Heya! My name is Casper Eide Özdemir-Børretzen and on this site I post some posts from time to time.
 
