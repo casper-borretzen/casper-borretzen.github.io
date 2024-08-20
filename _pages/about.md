@@ -4,7 +4,7 @@ title: About me
 ---
 
 <!--![portrait](portrait_round_x300.png)-->
-<img style="float: left; margin-right:10px;width:300px;" src="portrait_round_x300.png" alt="portrait">
+<img src="portrait_round_x300.png" alt="portrait">
 
 Heya! My name is Casper Eide Özdemir-Børretzen and on this site I post some posts from time to time.
 
