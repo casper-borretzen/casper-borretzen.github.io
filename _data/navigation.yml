@@ -1,5 +1,6 @@
-links:
 - title: Posts
   url: /
+#- title: Documents
+#  url: /docs
 - title: About me
   url: /about
