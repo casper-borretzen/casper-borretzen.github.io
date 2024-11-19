@@ -5,7 +5,7 @@ layout: default
 <section class="posts">
 <ul>
 {% for item in site.data.docs %}
-<li><a href="{{ item.filename }}.pdf">{{ item.title }}</a><time {{ item.date | date_to_xmlschema }}">{{ item.date | time | date: "%e %b %Y" }}</time></li>
+<li><a href="{{ site.baseurl }}{{ item.filename }}.pdf">{{ item.title }}</a><time {{ item.date | date_to_xmlschema }}">{{ item.date | time | date: "%e %b %Y" }}</time></li>
 {% endfor %}
 </ul>
 </section>
