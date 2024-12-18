@@ -14,11 +14,11 @@ I am going for the approach of generating a cube and projecting the cube as a sp
 
 Here I've looked at the writings [Wraparound square tile maps on a sphere](https://www.redblobgames.com/x/1938-square-tiling-of-sphere/){:target="_blank"} by [Amit Patel](https://x.com/redblobgames){:target="_blank"} and [Cube Sphere: Going from Cube to Sphere](https://catlikecoding.com/unity/tutorials/procedural-meshes/cube-sphere/){:target="_blank"} by [Jasper Flick](https://x.com/catlikecoding){:target="_blank"}.
 
-Plus the following papers (as mentioned by Amit Patel):
-- [Zucker, M., & Higashi, Y. (2018): Cube-to-sphere projections for procedural texturing and beyond](https://www.jcgt.org/published/0007/02/01/paper-lowres.pdf){:target="_blank"}
-- [Dimitrijević, A., Lambers, M., & Rančić, D. (2016): Comparison of spherical cube map projections used in planet-sized terrain rendering](http://casopisi.junis.ni.ac.rs/index.php/FUMathInf/article/viewFile/871/pdf_75){:target="_blank"}
-- [Lambers, M. (2019): Survey of Cube Mapping Methods in Interactive Computer Graphics](https://marlam.de/publications/cubemaps/lambers2019cubemaps.pdf){:target="_blank"}
-- [Lu, F., Song, Z., & Fang, X. (2014): Generation of orthogonal curvilinear grids on the sphere surface based on Laplace-Beltrami equations](https://iopscience.iop.org/article/10.1088/1755-1315/19/1/012012/pdf){:target="_blank"}
+<!-- Plus the following papers (as mentioned by Amit Patel): -->
+<!-- - [Zucker, M., & Higashi, Y. (2018): Cube-to-sphere projections for procedural texturing and beyond](https://www.jcgt.org/published/0007/02/01/paper-lowres.pdf){:target="_blank"} -->
+<!-- - [Dimitrijević, A., Lambers, M., & Rančić, D. (2016): Comparison of spherical cube map projections used in planet-sized terrain rendering](http://casopisi.junis.ni.ac.rs/index.php/FUMathInf/article/viewFile/871/pdf_75){:target="_blank"} -->
+<!-- - [Lambers, M. (2019): Survey of Cube Mapping Methods in Interactive Computer Graphics](https://marlam.de/publications/cubemaps/lambers2019cubemaps.pdf){:target="_blank"} -->
+<!-- - [Lu, F., Song, Z., & Fang, X. (2014): Generation of orthogonal curvilinear grids on the sphere surface based on Laplace-Beltrami equations](https://iopscience.iop.org/article/10.1088/1755-1315/19/1/012012/pdf){:target="_blank"} -->
 
 ### Procedure
 ---
